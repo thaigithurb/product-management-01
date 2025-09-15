@@ -1,0 +1,17 @@
+doctype html
+html 
+    head 
+        title #{pageTitle}
+        link(rel="stylesheet", href=`${prefixAdmin}/css/style.css`)
+    body 
+
+        include ../partials/header.pug
+
+        div(class="")
+
+            include ../partials/sider.pug
+
+            div(class="main m-[15px] relative left-[150px] w-[calc(100%_-_180px)]")
+                block main
+
+        script(src="/admin/js/script.js") 

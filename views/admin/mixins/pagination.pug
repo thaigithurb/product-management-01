@@ -1,0 +1,8 @@
+mixin pagination(currentPage, totalPages)
+    nav(class="pagination flex pt-[30px] justify-center ")
+        if (currentPage > 1)
+            button(class="p-[10px] rounded-md border border-gray-300 text-gray-600 bg-white hover:bg-[#0078F0] hover:text-[#ffff] cursor-pointer", button-pagination=currentPage - 1) Trang trước
+        -for (var i = 1; i <= totalPages; i++) 
+            button(class=`p-[10px] rounded-md border border-gray-300 text-gray-600 bg-white hover:bg-[#0078F0] hover:text-[#ffff] cursor-pointer ${i === currentPage ? "active" : ""}`, button-pagination=i) #{i}
+        if (currentPage < totalPages)  
+            button(class="p-[10px] rounded-md border border-gray-300 text-gray-600 bg-white hover:bg-[#0078F0] hover:text-[#ffff] cursor-pointer", button-pagination=currentPage + 1) Kế tiếp

@@ -1,0 +1,39 @@
+{
+  "name": "product-management-01",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon --inspect index.js\" \"npm run watch:css\"",
+    "watch:css": "concurrently \"npm run watch:client\" \"npm run watch:admin\"",
+    "watch:client": "npx tailwindcss -i ./src/tailwind.client.css -o ./public/css/style.css --watch",
+    "watch:admin": "npx tailwindcss -i ./src/tailwind.admin.css -o ./public/admin/css/style.css --watch",
+    "build:css": "npm run build:client && npm run build:admin",
+    "build:client": "npx tailwindcss -i ./src/tailwind.client.css -o ./public/css/style.css",
+    "build:admin": "npx tailwindcss -i ./src/tailwind.admin.css -o ./public/admin/css/style.css"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.2",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.19.0",
+    "mongoose": "^8.17.1",
+    "mongoose-slug-updater": "^3.3.0",
+    "multer": "^2.0.2",
+    "pug": "^3.0.3",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "nodemon": "^3.1.10"
+  }
+}

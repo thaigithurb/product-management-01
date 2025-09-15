@@ -1,0 +1,21 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main 
+    div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
+        +box-head("Danh sách sản phẩm")
+        div(class="grid grid-cols-4 gap-[20px]")
+            each item in products
+                a(href=`/products/${item.slug}` class="overflow-hidden border border-[#9E9E9E] rounded-[8px]")
+                    div  
+                        div(class="overflow-hidden") 
+                            img(class="w-full h-full  object-cover" src=item.thumbnail, alt="abc") 
+                        div(class="p-[10px] ") 
+                            div(class="pb-[5px] text-[22px] text-[#000]")  #{item.title}
+                            div(class="pb-[5px] text-[22px] text-[#4ACA6A]") $#{(item.price - item.price * item.discountPercentage / 100).toFixed(2)}
+                            div(class="pb-[5px] text-[22px] line-through text-[#F70000]") $#{item.price}
+                            div(class="bg-[#F70000] text-[#ffff] w-fit p-[4px] rounded-[8px] text-[12px]") #{item.discountPercentage}% 
+                        
+            
+
+    

@@ -1,0 +1,5 @@
+mixin search(keyword)
+    form(action="" id="form-search") 
+        div(class="")
+            input(class="outline-none border border-r-[0] p-[10px] rounded-l-[5px]" type="text", name="keyword", placeholder="Nhập từ khóa", value= keyword !== "" ? keyword : "")
+            button(class="border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-r-[5px] border-l-[0] p-[10px]" type="submit") Tìm

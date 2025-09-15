@@ -1,0 +1,3 @@
+mixin filter-status(filterStatus)
+        each item in filterStatus
+            button(class=`p-[10px] border border-[#28A745] text-[#28A745] ${item.class} cursor-pointer hover:bg-[#28A745] hover:text-[#ffff]  rounded-[5px]` button-status=item.status) #{item.name}
