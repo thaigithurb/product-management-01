@@ -34,10 +34,22 @@ module.exports.index = async (req, res) => {
         currentPage: 1,
     }, req.query, countProducts)
 
+    // sort 
+    let sort = {};
+    if (req.query.sortKey && req.query.sortValue) {
+        sort[req.query.sortKey] = req.query.sortValue;
+    } 
+    else {
+        sort.position = "desc"
+    }
+    // end sort 
+
+    const currentSort = req.query.sortKey && req.query.sortValue ? `${req.query.sortKey}-${req.query.sortValue}` : "";
+
 
     // end pagination 
 
-    const products = await Products.find(find).limit(objectPagination.limitItems).skip(objectPagination.offset).sort({ position: "desc" });
+    const products = await Products.find(find).limit(objectPagination.limitItems).skip(objectPagination.offset).sort(sort);
 
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Danh sách sản phẩm",
@@ -46,7 +58,8 @@ module.exports.index = async (req, res) => {
         keyword: search.keyword,
         totalPages: objectPagination.totalPages,
         currentPage: objectPagination.currentPage,
-        currentUrl: req.originalUrl
+        currentUrl: req.originalUrl,
+        currentSort: currentSort 
     })
 }
 

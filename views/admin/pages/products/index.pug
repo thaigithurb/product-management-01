@@ -3,6 +3,7 @@ include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/alert.pug
+include ../../mixins/sort.pug
 
 
 block main 
@@ -20,8 +21,8 @@ block main
                     +filter-status(filterStatus)
                 div 
                     +search(keyword)
-                            
-     
+
+        +sort()
         
         div(class=' mt-[30px] p-[20px] bg-[#EDEDED] flex rounded-[8px] flex-col gap-[20px]')
             div(class="") Danh sách
@@ -108,7 +109,9 @@ block main
         data-path=`${prefixAdmin}/products/delete`
     ) 
     
-    script(src="/admin/js/product.js")  
+    script(src="/admin/js/script.js")    
+    script(src="/admin/js/product.js")    
+
        
 
     

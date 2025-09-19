@@ -21,7 +21,7 @@ router.patch('/delete/:id', controller.itemDelete);
 
 router.get('/create', controller.createItem);
 
-router.post('/create', upload.single('thumbnail'), 
+router.post('/create', upload.single('thumbnail'),
     cloudUpload.upload,
     validate.createItemPost,
     controller.createItemPost
@@ -30,7 +30,11 @@ router.post('/create', upload.single('thumbnail'),
 
 router.get('/edit/:id', controller.editItem);
 
-router.patch('/edit/:id', upload.single('thumbnail'), validate.editItemPost, controller.editItemPatch);
+router.patch('/edit/:id', upload.single('thumbnail'),
+    cloudUpload.upload,
+    validate.editItemPost,
+    controller.editItemPatch
+);
 
 router.get('/detail/:id', controller.itemDetail);
 

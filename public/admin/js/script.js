@@ -13,8 +13,7 @@ if (buttonsStatus.length > 0) {
 
             if (status) {
                 url.searchParams.set("status", status);
-            }
-            else {
+            } else {
                 url.searchParams.delete("status");
             }
 
@@ -38,8 +37,7 @@ if (formSearch) {
 
         if (keyword) {
             url.searchParams.set("keyword", keyword);
-        }
-        else {
+        } else {
             url.searchParams.delete("keyword");
         }
 
@@ -75,8 +73,7 @@ if (checkBoxMulti) {
     inputCheckAll.addEventListener("click", () => {
         if (inputCheckAll.checked) {
             inputsId.forEach(input => input.checked = true);
-        }
-        else {
+        } else {
             inputsId.forEach(input => input.checked = false);
         }
     })
@@ -87,8 +84,7 @@ if (checkBoxMulti) {
 
             if (countChecked == inputsId.length) {
                 inputCheckAll.checked = true;
-            }
-            else {
+            } else {
                 inputCheckAll.checked = false;
             }
         })
@@ -126,8 +122,7 @@ if (multiChangeForm) {
                 if (type == "position-change") {
                     const position = input.closest("tr").querySelector("input[name='position']").value;
                     ids.push(`${id}-${position}`)
-                }
-                else {
+                } else {
                     ids.push(id);
                 }
             });
@@ -139,8 +134,7 @@ if (multiChangeForm) {
             multiChangeForm.action = multiChangeForm.action + `&redirect=${redirectUrl}`;
 
             multiChangeForm.submit();
-        }
-        else {
+        } else {
             alert("Vui lòng chọn ít nhất 1 bản ghi!");
         }
 
@@ -172,19 +166,59 @@ if (showAlert) {
 
 const preViewThumbnail = document.querySelector("#thumbnail");
 
-preViewThumbnail.onchange = evt => {
-    const [file] = preViewThumbnail.files;
+if (preViewThumbnail) {
 
-    if (file) {
-        const blah = document.querySelector("#blah");
-        
-        blah.classList.remove("hidden");
+    preViewThumbnail.onchange = evt => {
+        const [file] = preViewThumbnail.files;
 
-        blah.src = URL.createObjectURL(file);
+        if (file) {
+            const blah = document.querySelector("#blah");
 
-    }
-    else {
-        blah.classList.add("hidden");
+            blah.classList.remove("hidden");
+
+            blah.src = URL.createObjectURL(file);
+
+        } else {
+            blah.classList.add("hidden");
+        }
     }
 }
 // end pre-view image 
+
+
+// sort 
+const sort = document.querySelector('[sort]');
+if (sort) {
+    const sortSelect = document.querySelector("[sort-select]");
+    const sortClear = document.querySelector("[sort-clear]");
+
+
+    sortSelect.addEventListener("change", (e) => {
+        e.preventDefault();
+        
+           let url = new URL(window.location.href);
+
+        const sortArr = e.target.value;
+        const sortItems = sortArr.split("-");
+        
+        const [sortKey, sortValue] = sortItems;
+
+        url.searchParams.set("sortKey", sortKey);
+        url.searchParams.set("sortValue", sortValue);
+
+        window.location.href = url;
+    })
+
+    // clear sort 
+    sortClear.addEventListener("click", () => {
+        let url = new URL(window.location.href); // Tạo URL mới mỗi lần
+
+        url.searchParams.delete("sortKey");
+        url.searchParams.delete("sortValue");
+
+        window.location.href = url;
+    })
+    // end clear sort 
+}
+// end sort
+
