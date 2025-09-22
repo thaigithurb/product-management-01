@@ -1,20 +1,19 @@
 mixin sort()
     div(class="border-[2px] mt-[30px] rounded-[8px] border-[#C6C8CA]")
         div(class="bg-[#D6D8DB] p-[15px]") Sắp xếp
-            div(class="p-[15px] flex justify-between items-center border-t-[2px] border-[#C6C8CA]")
-                div(class="filter gap-[5px]")
-                    div(sort)
-                        select(
-                            class="p-[15px] mb-[10px] outline-none border rounded-[8px]"
-                            name="sort"
-                            sort-select 
-                        )   
-                            option(value="" selected=(currentSort == "" || !currentSort)) -- Chọn sắp xếp --
-                            option(value="position-desc" selected=(currentSort == "position-desc")) Ví trí giảm dần 
-                            option(value="position-asc" selected=(currentSort == "position-asc")) Ví trí tăng dần 
-                            option(value="price-desc" selected=(currentSort == "price-desc")) Giá giảm dần 
-                            option(value="price-asc" selected=(currentSort == "price-asc")) Giá tăng dần 
-                            option(value="title-asc" selected=(currentSort == "title-asc")) Tiêu đề A - Z 
-                            option(value="title-desc" selected=(currentSort == "title-desc")) Tiêu đề Z - A
-                
-                        button(class="block p-[15px] border border-[#DC3545] cursor-pointer hover:bg-[#C82333] bg-[#DC3545] text-[#ffff] rounded-[8px]" sort-clear) Clear
+        div(class="p-[15px] flex justify-between items-center border-t-[2px] border-[#C6C8CA]")
+            div(sort)
+                select(
+                    class="p-[15px] mb-[10px] outline-none border rounded-[8px]"
+                    name="sort"
+                    sort-select 
+                )   
+                    option(value="" selected=(currentSort == "" || !currentSort)) -- Chọn sắp xếp --
+                    option(value="position-desc" selected=(currentSort == "position-desc")) Ví trí giảm dần 
+                    option(value="position-asc" selected=(currentSort == "position-asc")) Ví trí tăng dần 
+                    option(value="price-desc" selected=(currentSort == "price-desc")) Giá giảm dần 
+                    option(value="price-asc" selected=(currentSort == "price-asc")) Giá tăng dần 
+                    option(value="title-asc" selected=(currentSort == "title-asc")) Tiêu đề A - Z 
+                    option(value="title-desc" selected=(currentSort == "title-desc")) Tiêu đề Z - A
+        
+                button(class="block p-[15px] border border-[#DC3545] cursor-pointer hover:bg-[#C82333] bg-[#DC3545] text-[#ffff] rounded-[8px]" sort-clear) Clear

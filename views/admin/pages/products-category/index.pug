@@ -1,0 +1,78 @@
+extends ../../layouts/default.pug
+
+
+block main 
+
+    div(class="") 
+        h1 Danh mục sản phẩm
+
+    div(class=' mt-[30px] p-[20px] bg-[#EDEDED] flex rounded-[8px] flex-col gap-[20px]')
+        div(class="") Danh sách
+        form(
+            action=`${prefixAdmin}/products/multi-change?_method=PATCH`
+            method="POST"
+            multi-change-form 
+            class="flex items-center justify-between "
+        )   
+            div(class="flex gap-[10px]") 
+                div 
+                    select(name="type", class="p-[15px]  outline-none border rounded-[8px]")
+                        option(value="" selected disabled) -- Chọn hành động --   
+                        option(value="active") Hoạt động 
+                        option(value="inactive") Dừng hoạt động 
+                        option(value="delete-all") Xóa tất cả
+                        option(value="position-change") Thay đổi vị trí
+                div 
+                    input(
+                        type='text'
+                        name="ids"
+                        class="p-[15px] rounded-[8px] outline-none border hidden"
+                        val=""
+                        
+                    )
+                button(class="p-[15px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] text-[#ffff] rounded-[8px]") Áp dụng
+            div 
+                a(href=`${prefixAdmin}/products-category/create`) 
+                    div(class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") + Thêm mới
+        table(class="w-full border-collapse border " checkbox-multi)
+                thead(class="")
+                    tr(class="border-b-[2px] border-t border-[#DADADA] ")
+                        th(class="text-center")
+                            input(type="checkbox" name="checkall")
+                        th STT
+                        th(class="") Hình ảnh
+                        th(class="") Tiêu đề
+                        th(class="") Vị trí
+                        th(class="") Trạng thái
+                        th(class="") Hành động
+                tbody(class="") 
+                    each item, index in records
+                        tr(class="border-b  border-[#DADADA]")
+                            td(class="text-center")
+                                input(type="checkbox" name="id" value=item.id) 
+                            td #{index + 1}
+                            td
+                                img(src=item.thumbnail, alt=item.title, class="w-[100px] h-auto")
+                            td #{item.title}
+                            td
+                                input(
+                                    type="number"
+                                    value=item.position
+                                    min="1"
+                                    name="position"
+                                    class="w-[60px]"
+                                )
+                            td  
+                                if (item.status == "active")
+                                    a(href="javascript:;", button-change-status, data-status="active", data-id=item.id
+                                    ,class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
+                                else 
+                                    a(href="javascript:;", button-change-status, data-status="inactive", data-id=item.id
+                                    ,class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
+                            td(class="flex gap-[5px] items-center")
+                                a(href=`${prefixAdmin}/products/edit/${item.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Sửa 
+                                button(class="border-none bg-[#DC3545] hover:bg-[#C82333] text-[#ffff] p-[11.5px] rounded-[5px] cursor-pointer" data-id=item.id delete-button) Xóa
+                                a(href=`${prefixAdmin}/products/detail/${item.id}` class="text-[#ffff] bg-[#6B747C] hover:bg-[#5A6268] border-none p-[10px] rounded-[5px] mr-[5px] cursor-pointer") Chi tiết 
+    
+    script(src="/admin/js/script.js")    
+    script(src="/admin/js/product.js")    
