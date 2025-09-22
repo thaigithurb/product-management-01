@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
 const multer  = require('multer');
+const path = require('path');
 require('dotenv').config();
 
 const database = require("./config/database");
@@ -34,6 +35,9 @@ app.use(flash());
 // end flash 
 
 app.use(express.static(`${__dirname}/public`));
+
+// Tiny MCE 
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // App Locals Variable 
 app.locals.prefixAdmin = systemConfig.prefixAdmin;

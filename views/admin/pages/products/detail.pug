@@ -34,7 +34,7 @@ block main
             b #{product.position}
 
     if(product.description)
-        div(class="mb-[24px]") #{product.description}
+        div(class="mb-[24px]") !{product.description}
 
     div 
         a(href=`${prefixAdmin}/products/edit/${product.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Chỉnh Sửa 
