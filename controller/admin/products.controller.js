@@ -3,6 +3,7 @@ const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
 const systemConfig = require("../../config/system");
+const pagination = require("../../helpers/pagination");
 
 // [GET] /admin/products
 module.exports.index = async (req, res) => {
@@ -59,7 +60,8 @@ module.exports.index = async (req, res) => {
         totalPages: objectPagination.totalPages,
         currentPage: objectPagination.currentPage,
         currentUrl: req.originalUrl,
-        currentSort: currentSort 
+        currentSort: currentSort,
+        pagination: objectPagination 
     })
 }
 
