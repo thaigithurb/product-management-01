@@ -89,10 +89,11 @@ block main
                                 else 
                                     a(href="javascript:;", button-change-status, data-status="inactive", data-id=item.id
                                     ,class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
-                            td(class="flex gap-[5px] items-center")
-                                a(href=`${prefixAdmin}/products/edit/${item.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Sửa 
-                                button(class="border-none bg-[#DC3545] hover:bg-[#C82333] text-[#ffff] p-[11.5px] rounded-[5px] cursor-pointer" data-id=item.id delete-button) Xóa
-                                a(href=`${prefixAdmin}/products/detail/${item.id}` class="text-[#ffff] bg-[#6B747C] hover:bg-[#5A6268] border-none p-[10px] rounded-[5px] mr-[5px] cursor-pointer") Chi tiết 
+                            td(class="")
+                                div(class="flex items-center gap-[5px]")
+                                    a(href=`${prefixAdmin}/products/edit/${item.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Sửa 
+                                    button(class="border-none bg-[#DC3545] hover:bg-[#C82333] text-[#ffff] p-[11.5px] rounded-[5px] cursor-pointer" data-id=item.id delete-button) Xóa
+                                    a(href=`${prefixAdmin}/products/detail/${item.id}` class="text-[#ffff] bg-[#6B747C] hover:bg-[#5A6268] border-none p-[10px] rounded-[5px] mr-[5px] cursor-pointer") Chi tiết 
     +pagination(currentPage, totalPages)
 
     form(

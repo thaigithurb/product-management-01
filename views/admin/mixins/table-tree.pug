@@ -1,0 +1,32 @@
+mixin table-tree(items, level = 1)
+    each item, index in items
+        - const prefix = Array(level + 1).join("-- ")
+        tr(class="border-b  border-[#DADADA]")
+            td(class="text-center")
+                input(type="checkbox" name="id" value=item.id) 
+            td #{item.index}
+            td
+                img(src=item.thumbnail, alt=item.title, class="w-[100px] h-auto")
+            td #{prefix}#{item.title}
+            td
+                input(
+                    type="number"
+                    value=item.position
+                    min="1"
+                    name="position"
+                    class="w-[60px]"
+                )
+            td  
+                if (item.status == "active")
+                    a(href="javascript:;", button-change-status, data-status="active", data-id=item.id
+                    class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
+                else 
+                    a(href="javascript:;", button-change-status, data-status="inactive", data-id=item.id
+                    class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
+            td(class="")
+                div(class="flex items-center gap-[5px]")
+                    a(href=`${prefixAdmin}/products/edit/${item.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Sửa 
+                    button(class="border-none bg-[#DC3545] hover:bg-[#C82333] text-[#ffff] p-[11.5px] rounded-[5px] cursor-pointer" data-id=item.id delete-button) Xóa
+                    a(href=`${prefixAdmin}/products/detail/${item.id}` class="text-[#ffff] bg-[#6B747C] hover:bg-[#5A6268] border-none p-[10px] rounded-[5px] mr-[5px] cursor-pointer") Chi tiết 
+        if item.children && item.children.length > 0
+            +table-tree(item.children, level + 1)

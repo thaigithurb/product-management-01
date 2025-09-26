@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
 
 
 block main 
@@ -18,13 +19,17 @@ block main
                 name="title"
             )
         div(class="mt-[15px]") 
-            label(for="parent-id") Danh mục cha
-            input(
-                type="text"
-                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
-                id="parent-id"
-                name="parent-id"
-            )
+            label(for="parent_id") Danh mục cha
+            //- input(
+            //-     type="text"
+            //-     class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+            //-     id="parent_id"
+            //-     name="parent_id"
+            //- )
+            select(name="parent_id" id="parent_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
+                option(value="") -- Chọn danh mục cha --
+                if (records) 
+                    +select-tree(records)
         div(class="mt-[15px]") 
             label(for="desc") Mô tả
             textarea(
