@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
 
 block main 
 
@@ -18,12 +19,18 @@ block main
                 value=product.title
             )
         div(class="mt-[15px]") 
+            label(for="product_category_id") Danh mục
+            select(name="product_category_id" id="product_category_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
+                option(value="") -- Chọn danh mục --
+                if (category) 
+                    +select-tree(category, 1, product.product_category_id)
+        div(class="mt-[15px]") 
             label(for="desc") Mô tả
             textarea(
                 rows="5"
                 id="desc"
                 name="description"
-                class="w-full outline-none p-[15px] mt-[5px]"
+                class="w-full outline-none p-[15px] mt-[5px] textarea-mce"
                 value=product.description
             ) #{product.description}
         div(class="mt-[15px]") 
