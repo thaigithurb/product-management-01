@@ -22,4 +22,12 @@ router.post('/create', upload.single('thumbnail'),
     controller.createItemPost
 );
 
+router.get('/edit/:id', controller.editItem);
+
+router.patch('/edit/:id', upload.single('thumbnail'),
+    cloudUpload.upload,
+    validate.editItemPost,
+    controller.editItemPatch
+);
+
 module.exports = router
