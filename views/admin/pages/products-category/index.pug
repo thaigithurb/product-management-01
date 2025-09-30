@@ -1,7 +1,11 @@
 extends ../../layouts/default.pug
 include ../../mixins/table-tree.pug
+include ../../mixins/alert.pug
 
 block main 
+
+    +alert-success('1000')
+    +alert-error('1000')
 
     div(class="") 
         h1 Danh mục sản phẩm

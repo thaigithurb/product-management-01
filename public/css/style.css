@@ -132,6 +132,9 @@
 .justify-center {
   justify-content: center;
 }
+.justify-end {
+  justify-content: flex-end;
+}
 .gap-\[5px\] {
   gap: 5px;
 }
@@ -222,11 +225,17 @@
 .border-\[\#C6C8CA\] {
   border-color: #C6C8CA;
 }
+.border-\[\#D8D8D8\] {
+  border-color: #D8D8D8;
+}
 .border-\[\#DADADA\] {
   border-color: #DADADA;
 }
 .border-\[\#DC3545\] {
   border-color: #DC3545;
+}
+.border-\[\#EDEDED\] {
+  border-color: #EDEDED;
 }
 .border-\[\#F5C6CB\] {
   border-color: #F5C6CB;
@@ -303,6 +312,12 @@
 .p-\[20px\] {
   padding: 20px;
 }
+.px-\[20px\] {
+  padding-inline: 20px;
+}
+.py-\[10px\] {
+  padding-block: 10px;
+}
 .pt-\[5px\] {
   padding-top: 5px;
 }
@@ -330,11 +345,20 @@
 .pb-\[30px\] {
   padding-bottom: 30px;
 }
+.pl-\[2px\] {
+  padding-left: 2px;
+}
+.pl-\[5px\] {
+  padding-left: 5px;
+}
 .pl-\[10px\] {
   padding-left: 10px;
 }
 .text-center {
   text-align: center;
+}
+.text-right {
+  text-align: right;
 }
 .text-\[12px\] {
   font-size: 12px;
@@ -435,10 +459,24 @@
     }
   }
 }
+.hover\:bg-\[\#AFAFAF\] {
+  &:hover {
+    @media (hover: hover) {
+      background-color: #AFAFAF;
+    }
+  }
+}
 .hover\:bg-\[\#C82333\] {
   &:hover {
     @media (hover: hover) {
       background-color: #C82333;
+    }
+  }
+}
+.hover\:bg-\[\#CFCFCF\] {
+  &:hover {
+    @media (hover: hover) {
+      background-color: #CFCFCF;
     }
   }
 }
