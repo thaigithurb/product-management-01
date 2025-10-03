@@ -22,4 +22,10 @@ router.patch('/edit/:id',
     controller.editItemPatch
 );
 
+router.get('/permissions', controller.permissions);
+
+router.patch('/permissions', controller.permissionsPatch);
+
+
+
 module.exports = router

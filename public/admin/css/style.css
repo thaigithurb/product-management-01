@@ -234,9 +234,6 @@
 .border-\[\#DC3545\] {
   border-color: #DC3545;
 }
-.border-\[\#EDEDED\] {
-  border-color: #EDEDED;
-}
 .border-\[\#F5C6CB\] {
   border-color: #F5C6CB;
 }
@@ -345,12 +342,6 @@
 .pb-\[30px\] {
   padding-bottom: 30px;
 }
-.pl-\[2px\] {
-  padding-left: 2px;
-}
-.pl-\[5px\] {
-  padding-left: 5px;
-}
 .pl-\[10px\] {
   padding-left: 10px;
 }
@@ -456,13 +447,6 @@
   &:hover {
     @media (hover: hover) {
       background-color: #0078F0;
-    }
-  }
-}
-.hover\:bg-\[\#AFAFAF\] {
-  &:hover {
-    @media (hover: hover) {
-      background-color: #AFAFAF;
     }
   }
 }

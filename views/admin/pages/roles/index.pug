@@ -2,9 +2,8 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main 
-
-    +alert-success('1000')
-    +alert-error('1000')
+    
+    +alert-success(1000)
 
     div(class="") 
         h1 Nhóm quyền
@@ -36,4 +35,3 @@ block main
                 else 
                     tr(class="border-b  border-[#DADADA]")
                         td(class="text-center") Chưa có nhóm quyền nào được tạo
-    script(src="/admin/js/script.js")

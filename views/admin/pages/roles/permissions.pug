@@ -1,0 +1,130 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+
+    +alert-success(1000)
+
+    - const data = ["Danh mục sản phẩm", "Sản phẩm"]
+
+    h1 Nhóm quyền
+
+    if (records)
+        div(data-records=records)
+        div(class="text-right")
+            button(
+                type="submit"
+                class="p-[15px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] text-[#ffff] rounded-[8px]"
+                button-submit
+            ) Cập nhật
+
+        table(class="w-full border-collapse border mt-[20px]" table-permissions)
+            thead(class="")
+                tr(class="border-b-[2px] border-t border-[#DADADA]")
+                    th(class="") Tính năng
+                    each item in records
+                        th(class="text-center") #{item.title}
+            tbody(class="") 
+                tr(class="border-b-[2px] border-t border-[#DADADA] hidden" data-name="id") 
+                    td
+                    each item in records
+                        td(class="text-center")
+                            input(type="text" value=item.id)
+
+                //- Danh mục sản phẩm 
+                tr(class="border-b-[2px] border-t border-[#DADADA] ") 
+                    td
+                        b Danh mục sản phẩm 
+                tr(data-name="products-category_view" class="border-b-[2px] border-t border-[#DADADA] ")
+                    td Xem
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="products-category_create" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Thêm mới
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="products-category_edit" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Chỉnh sửa
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="products-category_delete" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Xóa
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+
+                //- Sản phẩm 
+                tr(class="border-b-[2px] border-t border-[#DADADA] ") 
+                    td
+                        b Sản phẩm 
+                tr(data-name="products_view" class="border-b-[2px] border-t border-[#DADADA] ")
+                    td Xem
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="products_create" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Thêm mới
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="products_edit" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Chỉnh sửa
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="products_delete" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Xóa
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+
+                //- Nhóm quyền
+                tr(class="border-b-[2px] border-t border-[#DADADA] ") 
+                    td
+                        b Nhóm quyền
+                tr(data-name="roles_view" class="border-b-[2px] border-t border-[#DADADA] ")
+                    td Xem
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="roles_create" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Thêm mới
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="roles_edit" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Chỉnh sửa
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="roles_delete" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Xóa
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                tr(data-name="roles_permissions" class="border-b-[2px] border-t border-[#DADADA]")
+                    td Phân quyền
+                    each item in records
+                        td(class="text-center")
+                            input(type="checkbox")
+                
+    else  
+        div(class="text-center") Bạn chưa có nhóm quyền nào.
+            a(href=`${prefixAdmin}/roles/create`) Tạo mới
+
+    form(action=`${prefixAdmin}/roles/permissions?_method=PATCH` id="change-permissions-form" method="POST" class="hidden") 
+        div 
+            input(
+                type="text"
+                name="permissions"
+            )
+
+    script(src="/admin/js/roles.js")  
+       
+
+    
+
+
