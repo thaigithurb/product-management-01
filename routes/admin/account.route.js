@@ -18,4 +18,8 @@ router.post('/create', upload.single('avatar'),
     controller.createItemPost
 );
 
+router.get('/edit/:id', controller.edit);
+
+router.patch('/edit/:id',  upload.single('avatar'), cloudUpload.upload, controller.editItemPatch);
+
 module.exports = router
