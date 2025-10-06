@@ -1,0 +1,91 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+    
+    +alert-error('1000')
+
+    h1(class="mb-[4px]") Thêm mới tài khoản
+
+    form(action=`${prefixAdmin}/accounts/create` id="create-account-form" method="POST") 
+        div(class="mt-[15px]") 
+            label(for="fullName") Họ tên *
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="fullName"
+                name="fullName"
+                required 
+            )
+        div(class="mt-[15px]") 
+            label(for="email") Email *
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="email"
+                name="email"
+                required
+            )
+        div(class="mt-[15px]") 
+            label(for="password") Mật khẩu *
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="password"
+                name="password"
+                required
+            )
+        div(class="mt-[15px]") 
+            label(for="phone") Số điện thoại
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="phone"
+                name="phone"
+            )
+        div(class="mt-[15px]") 
+            label(for="avatar") Avatar
+            div(class=" p-[15px] mt-[5px] outline-none border rounded-[8px]")
+                input(
+                    type="file"
+                    class="w-full"
+                    id="avatar"
+                    name="avatar"
+                    accept="image/*"
+                    upload-preview-image
+                )
+                img(id="blah" src="#" alt="your image" class="w-[500px] mt-[5px] hidden border rounded-[8px] w-[100px]" )
+        div(class="mt-[15px]") 
+            label(for="role_id") Phân quyền
+            select(name="role_id" id="role_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
+                option(value="" disabled selected) -- Chọn --
+                each item in roles
+                    option(value=item.id) #{item.title}
+        div(class="mt-[15px] flex items-center gap-[15px]") 
+            div 
+                input(
+                    type="radio"
+                    id="statusActive"
+                    name="status"
+                    value="active"
+                    checked
+                )
+                label(for="statusActive") Hoạt động
+            div 
+                input(
+                    type="radio"
+                    id="statusInactive"
+                    name="status"
+                    value="inactive"
+                )
+                label(for="statusInactive") Dừng hoạt động
+        div(class="mt-[20px]") 
+            button(
+                type="submit"
+                class="p-[15px] text-[18px] rounded-[8px] bg-[#0071E1] hover:bg-[#0066CC] border-none text-[#ffff] cursor-pointer"
+            ) Tạo mới
+       
+    script(src="/admin/js/script.js")  
+    
+
+

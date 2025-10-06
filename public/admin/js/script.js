@@ -164,12 +164,12 @@ if (showAlert) {
 
 // pre-view image 
 
-const preViewThumbnail = document.querySelector("#thumbnail");
+const preViewImage = document.querySelector("[upload-preview-image]");
 
-if (preViewThumbnail) {
+if (preViewImage) {
 
-    preViewThumbnail.onchange = evt => {
-        const [file] = preViewThumbnail.files;
+    preViewImage.onchange = evt => {
+        const [file] = preViewImage.files;
 
         if (file) {
             const blah = document.querySelector("#blah");
