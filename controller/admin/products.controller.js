@@ -1,4 +1,5 @@
 const Products = require("../../models/products.model");
+const Accounts = require("../../models/account.model");
 const ProductsCategory = require("../../models/products-category.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
@@ -48,10 +49,19 @@ module.exports.index = async (req, res) => {
 
     const currentSort = req.query.sortKey && req.query.sortValue ? `${req.query.sortKey}-${req.query.sortValue}` : "";
 
-
     // end pagination 
 
     const products = await Products.find(find).limit(objectPagination.limitItems).skip(objectPagination.offset).sort(sort);
+
+    for (const product of products) {
+        const user = await Accounts.findOne({
+            _id: product.createdBy.account_id
+        });
+
+        if (user) {
+            product.account_fullName = user.fullName
+        }
+    }
 
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Danh sách sản phẩm",
@@ -156,7 +166,10 @@ module.exports.itemDelete = async (req, res) => {
         _id: id
     }, {
         deleted: true,
-        deletedAt: new Date()
+        deletedBy: {
+            account_id: res.locals.user.id,
+            deletedAt: new Date(),
+        }
     });
 
     req.flash('success', `Đã xóa thành công sản phẩm!`);
@@ -197,6 +210,10 @@ module.exports.createItemPost = async (req, res) => {
     } else {
         req.body.position = parseInt(req.body.position);
     }
+
+    req.body.createdBy = {
+        account_id: res.locals.user.id
+    };
 
     const newProduct = new Products(req.body);
 

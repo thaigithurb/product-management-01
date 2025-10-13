@@ -14,6 +14,7 @@ const systemConfig = require("./config/system");
 const adminRoute = require("./routes/admin/index.route");
 
 const route = require("./routes/client/index.route");
+const moment = require('moment/moment');
 
 database.connect();
 
@@ -41,6 +42,7 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 
 // App Locals Variable 
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+app.locals.moment = moment;
 
 // routes 
 route(app);

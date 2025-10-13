@@ -4,6 +4,7 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/alert.pug
 include ../../mixins/sort.pug
+include ../../mixins/moment.pug
 
 
 block main 
@@ -67,6 +68,7 @@ block main
                             th(class="") Giá
                             th(class="") Vị trí
                             th(class="") Trạng thái
+                            th(class="") Người tạo
                             th(class="") Hành động
                     tbody(class="") 
                         each item, index in products
@@ -91,6 +93,10 @@ block main
                                         a(href="javascript:;" button-change-status data-status="active" data-id=item.id class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
                                     else 
                                         a(href="javascript:;" button-change-status data-status="inactive" data-id=item.id class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
+                                td 
+                                    p #{item.account_fullName}
+                                    if (item.createdBy.createdAt)
+                                        +formatDateTime(item.createdBy.createdAt)
                                 td(class="")
                                     div(class="flex items-center gap-[5px]")
                                         if (role.permissions.includes("products_edit"))
