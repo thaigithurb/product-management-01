@@ -1,16 +1,21 @@
 div(class="sider w-[150px] bg-[#323232] text-[#ffffff] h-[calc(100vh_-_52px)] fixed top-[52px] left-0") 
     div(class="inner-menu")
-        ul
+        ul  
             li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
                 a(href=`${prefixAdmin}/dashboard` class="text-[#ffff] ") Tổng quan
-            li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
-                a(href=`${prefixAdmin}/products-category` class="text-[#ffff] ") Danh mục sản phẩm
-            li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
-                a(href=`${prefixAdmin}/products` class="text-[#ffff] ") Danh sách sản phẩm
-            li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
-                a(href=`${prefixAdmin}/roles` class="text-[#ffff] ") Nhóm quyền
-            li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
-                a(href=`${prefixAdmin}/roles/permissions` class="text-[#ffff] ") Phân quyền
-            li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
-                a(href=`${prefixAdmin}/accounts` class="text-[#ffff] ") Danh sách tài khoản
+            if (role.permissions.includes("products-category_view"))
+                li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
+                    a(href=`${prefixAdmin}/products-category` class="text-[#ffff] ") Danh mục sản phẩm
+            if (role.permissions.includes("products_view"))
+                li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
+                    a(href=`${prefixAdmin}/products` class="text-[#ffff] ") Danh sách sản phẩm
+            if (role.permissions.includes("roles_view"))
+                li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
+                    a(href=`${prefixAdmin}/roles` class="text-[#ffff] ") Nhóm quyền
+            if (role.permissions.includes("roles_permissions"))
+                li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
+                    a(href=`${prefixAdmin}/roles/permissions` class="text-[#ffff] ") Phân quyền
+            if (role.permissions.includes("accounts_view"))
+                li(class="border-b-[1px] border-b-[#515151] pt-[6px] pb-[6px] pl-[10px] pr-[10px]")
+                    a(href=`${prefixAdmin}/accounts` class="text-[#ffff] ") Danh sách tài khoản
             

@@ -17,7 +17,7 @@ module.exports.index = async (req, res) => {
     const newRecords = createTreeHelper.tree(records);
 
     res.render("admin/pages/products-category/index", {
-        pageTitle: "Danh sách sản phẩm",
+        pageTitle: "Danh mục sản phẩm",
         records: newRecords,
     })
 }
@@ -106,4 +106,23 @@ module.exports.editItemPatch = async (req, res) => {
     }
 
     res.redirect(`${systemConfig.prefixAdmin}/products-category`);
+};
+
+// [PATCH] /admin/products-category/change-status/:status/:id 
+module.exports.changeStatus = async (req, res) => {
+
+    const status = req.params.status;
+    const id = req.params.id;
+
+    await ProductsCategory.updateOne({
+        _id: id
+    }, {
+        status: status
+    });
+
+    req.flash('success', 'Cập nhật trạng thái thành công!');
+
+    const redirectUrl = req.query.redirect || `${systemConfig.prefixAdmin}/products-category`;
+    res.redirect(redirectUrl);
+
 };

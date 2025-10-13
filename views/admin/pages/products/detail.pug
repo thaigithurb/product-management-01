@@ -3,47 +3,50 @@ include ../../mixins/alert.pug
 
 block main 
 
-    if(product.title)
-        h1(class="mb-[24px]") #{product.title}
+    if (role.permissions.includes("products_view"))
 
-    if(product.price)
-        div(class="mb-[24px]") Giá: 
-            b $#{product.price}
+
+        if(product.title)
+            h1(class="mb-[24px]") #{product.title}
+
+        if(product.price)
+            div(class="mb-[24px]") Giá: 
+                b $#{product.price}
+                
+        if(product.discountPercentage)
+            div(class="mb-[24px]") Giảm giá: 
+                b #{product.discountPercentage}%
+
+        if(product.stock)
+            div(class="mb-[24px]") Còn lại: 
+                b #{product.stock}
+        
+        if(product.thumbnail)
+            div(class="mb-[24px]") 
+                img(src=product.thumbnail, class="w-[200px]")
+        if(product.status)
+            div(class="mb-[24px]") 
+                span Trạng thái:      
+                if(product.status === "active") 
+                    span(class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
+                else 
+                    span(class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
+
+        if(product.position)
+            div(class="mb-[24px]") Vị trí: 
+                b #{product.position}
+
+        if(product.description)
+            div(class="mb-[24px]") !{product.description}
+        if (role.permissions.includes("products_edit"))
+            div 
+                a(href=`${prefixAdmin}/products/edit/${product.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Chỉnh Sửa 
             
-    if(product.discountPercentage)
-        div(class="mb-[24px]") Giảm giá: 
-            b #{product.discountPercentage}%
 
-    if(product.stock)
-        div(class="mb-[24px]") Còn lại: 
-            b #{product.stock}
-    
-    if(product.thumbnail)
-        div(class="mb-[24px]") 
-            img(src=product.thumbnail, class="w-[200px]")
-    if(product.status)
-        div(class="mb-[24px]") 
-            span Trạng thái:      
-            if(product.status === "active") 
-                span(class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
-            else 
-                span(class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
+        script(src="/admin/js/product.js")  
+        script(src="/admin/js/script.js")  
+        
 
-    if(product.position)
-        div(class="mb-[24px]") Vị trí: 
-            b #{product.position}
-
-    if(product.description)
-        div(class="mb-[24px]") !{product.description}
-
-    div 
-        a(href=`${prefixAdmin}/products/edit/${product.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Chỉnh Sửa 
-    
-
-    script(src="/admin/js/product.js")  
-    script(src="/admin/js/script.js")  
-       
-
-    
+        
 
 

@@ -2,86 +2,87 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main 
-    
+
+    if (role.permissions.includes("accounts_edit"))    
  
-    +alert-error('1000')
+        +alert-error('1000')
 
-    h1(class="mb-[4px]") Chỉnh sửa tài khoản
+        h1(class="mb-[4px]") Chỉnh sửa tài khoản
 
-    form(action=`${prefixAdmin}/accounts/edit/${account.id}?_method=PATCH` id="edit-account-form"  enctype="multipart/form-data" method="POST") 
-        div(class="mt-[15px]") 
-            label(for="fullName") Họ tên *
-            input(
-                type="text"
-                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
-                id="fullName"
-                name="fullName"
-                required 
-                value=account.fullName
-            )
-        div(class="mt-[15px]") 
-            label(for="email") Email *
-            input(
-                type="text"
-                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
-                id="email"
-                name="email"
-                required
-                value=account.email
-            )
-        div(class="mt-[15px]") 
-            label(for="phone") Số điện thoại
-            input(
-                type="text"
-                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
-                id="phone"
-                name="phone"
-                value=account.phone
-            )
-        div(class="mt-[15px]") 
-            label(for="avatar") Avatar
-            div(class=" p-[15px] mt-[5px] outline-none border rounded-[8px]")
+        form(action=`${prefixAdmin}/accounts/edit/${account.id}?_method=PATCH` id="edit-account-form"  enctype="multipart/form-data" method="POST") 
+            div(class="mt-[15px]") 
+                label(for="fullName") Họ tên *
                 input(
-                    type="file"
-                    class="w-full"
-                    id="avatar"
-                    name="avatar"
-                    accept="image/*"
-                    upload-preview-image
+                    type="text"
+                    class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                    id="fullName"
+                    name="fullName"
+                    required 
+                    value=account.fullName
                 )
-                img(id="blah" src=account.avatar alt="your image" class="w-[500px] mt-[5px] border rounded-[8px] w-[100px]" )
-        div(class="mt-[15px]") 
-            label(for="role_id") Phân quyền
-            select(name="role_id" id="role_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
-                option(value="" disabled selected) -- Chọn --
-                each item in roles
-                    option(value=item.id selected=(item.id === account.role_id ? true : false)) #{item.title}
-        div(class="mt-[15px] flex items-center gap-[15px]") 
-            div 
+            div(class="mt-[15px]") 
+                label(for="email") Email *
                 input(
-                    type="radio"
-                    id="statusActive"
-                    name="status"
-                    value="active"
-                    checked=(account.status == "active" ? true : false)
+                    type="text"
+                    class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                    id="email"
+                    name="email"
+                    required
+                    value=account.email
                 )
-                label(for="statusActive") Hoạt động
-            div 
+            div(class="mt-[15px]") 
+                label(for="phone") Số điện thoại
                 input(
-                    type="radio"
-                    id="statusInactive"
-                    name="status"
-                    value="inactive"
-                    checked=(account.status == "inactive" ? true : false)
+                    type="text"
+                    class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                    id="phone"
+                    name="phone"
+                    value=account.phone
                 )
-                label(for="statusInactive") Dừng hoạt động
-        div(class="mt-[20px]") 
-            button(
-                type="submit"
-                class="p-[15px] text-[18px] rounded-[8px] bg-[#0071E1] hover:bg-[#0066CC] border-none text-[#ffff] cursor-pointer"
-            ) Cập nhật
-       
-    script(src="/admin/js/script.js")  
-    
+            div(class="mt-[15px]") 
+                label(for="avatar") Avatar
+                div(class=" p-[15px] mt-[5px] outline-none border rounded-[8px]")
+                    input(
+                        type="file"
+                        class="w-full"
+                        id="avatar"
+                        name="avatar"
+                        accept="image/*"
+                        upload-preview-image
+                    )
+                    img(id="blah" src=account.avatar alt="your image" class="w-[500px] mt-[5px] border rounded-[8px] w-[100px]" )
+            div(class="mt-[15px]") 
+                label(for="role_id") Phân quyền
+                select(name="role_id" id="role_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
+                    option(value="" disabled selected) -- Chọn --
+                    each item in roles
+                        option(value=item.id selected=(item.id === account.role_id ? true : false)) #{item.title}
+            div(class="mt-[15px] flex items-center gap-[15px]") 
+                div 
+                    input(
+                        type="radio"
+                        id="statusActive"
+                        name="status"
+                        value="active"
+                        checked=(account.status == "active" ? true : false)
+                    )
+                    label(for="statusActive") Hoạt động
+                div 
+                    input(
+                        type="radio"
+                        id="statusInactive"
+                        name="status"
+                        value="inactive"
+                        checked=(account.status == "inactive" ? true : false)
+                    )
+                    label(for="statusInactive") Dừng hoạt động
+            div(class="mt-[20px]") 
+                button(
+                    type="submit"
+                    class="p-[15px] text-[18px] rounded-[8px] bg-[#0071E1] hover:bg-[#0066CC] border-none text-[#ffff] cursor-pointer"
+                ) Cập nhật
+        
+        script(src="/admin/js/script.js")  
+        
 
 

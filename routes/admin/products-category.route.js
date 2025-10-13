@@ -30,4 +30,6 @@ router.patch('/edit/:id', upload.single('thumbnail'),
     controller.editItemPatch
 );
 
+router.patch('/change-status/:status/:id', controller.changeStatus);
+
 module.exports = router

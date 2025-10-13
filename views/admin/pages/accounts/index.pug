@@ -3,47 +3,51 @@ include ../../mixins/alert.pug
 
 block main 
     
-    +alert-success('1000')
+    if (role.permissions.includes("accounts_view"))
 
-    div(class="") 
-        h1 Danh sách tài khoản
+        +alert-success('1000')
 
-    div(class=' mt-[30px] flex border border-[#D8D8D8] rounded-[8px] flex-col gap-[20px] overflow-hidden')
-        div(class=" p-[20px] bg-[#EDEDED]") Danh sách
-        div(class="flex justify-end px-[20px] py-[10px]")
-            a(href=`${prefixAdmin}/accounts/create`) 
-                div(class="w-fit p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") + Thêm mới
-        table(class="w-full border-collapse border " checkbox-multi)
-            thead(class="")
-                tr(class="border-b-[2px] border-t border-[#DADADA] ")
-                    th(class="pl-[10px]")  STT
-                    th(class="") Avatar
-                    th(class="") Họ tên
-                    th(class="") Phân quyền
-                    th(class="") Email
-                    th(class="") Trạng thái
-                    th(class="") Hành động
-            tbody 
-                if (records.length > 0)
-                    each item, index in records
-                            tr(class="border-b  border-[#DADADA] hover:bg-[#CFCFCF] cursor-pointer")
-                                td(class="pl-[10px]") #{index + 1}
-                                td
-                                    img(src=item.avatar, alt=item.fullName, class="w-[100px] h-auto")
-                                td #{item.fullName}
-                                td #{item.role.title}
-                                td #{item.email}
-                                td  
-                                    if (item.status == "active")
-                                        a(href="javascript:;", button-change-status, data-status="active", data-id=item.id
-                                        ,class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
-                                    else 
-                                        a(href="javascript:;", button-change-status, data-status="inactive", data-id=item.id
-                                        ,class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
-                                td(class="")
-                                    div(class="flex items-center gap-[5px]")
-                                        a(href=`${prefixAdmin}/accounts/edit/${item.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Sửa 
-                                        button(class="border-none bg-[#DC3545] hover:bg-[#C82333] text-[#ffff] p-[11.5px] rounded-[5px] cursor-pointer" data-id=item.id delete-button) Xóa
-                                        a(href=`${prefixAdmin}/accounts/detail/${item.id}` class="text-[#ffff] bg-[#6B747C] hover:bg-[#5A6268] border-none p-[10px] rounded-[5px] mr-[5px] cursor-pointer") Chi tiết 
+        div(class="") 
+            h1 Danh sách tài khoản
 
-    script(src="/admin/js/script.js")  
+        div(class=' mt-[30px] flex border border-[#D8D8D8] rounded-[8px] flex-col gap-[20px] overflow-hidden')
+            div(class=" p-[20px] bg-[#EDEDED]") Danh sách
+            if (role.permissions.includes("accounts_create"))
+                div(class="flex justify-end px-[20px] py-[10px]")
+                    a(href=`${prefixAdmin}/accounts/create`) 
+                        div(class="w-fit p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") + Thêm mới
+            table(class="w-full border-collapse border " checkbox-multi)
+                thead(class="")
+                    tr(class="border-b-[2px] border-t border-[#DADADA] ")
+                        th(class="pl-[10px]")  STT
+                        th(class="") Avatar
+                        th(class="") Họ tên
+                        th(class="") Phân quyền
+                        th(class="") Email
+                        th(class="") Trạng thái
+                        th(class="") Hành động
+                tbody 
+                    if (records.length > 0)
+                        each item, index in records
+                                tr(class="border-b  border-[#DADADA] hover:bg-[#CFCFCF] cursor-pointer")
+                                    td(class="pl-[10px]") #{index + 1}
+                                    td
+                                        img(src=item.avatar, alt=item.fullName, class="w-[100px] h-auto")
+                                    td #{item.fullName}
+                                    td #{item.role.title}
+                                    td #{item.email}
+                                    td  
+                                        if (item.status == "active")
+                                            a(href="javascript:;", button-change-status, data-status="active", data-id=item.id
+                                            ,class="bg-[#28A745] text-[#ffff] font-[600] p-[5px] rounded-[8px] hover:bg-[#1D7E33]") Hoạt động
+                                        else 
+                                            a(href="javascript:;", button-change-status, data-status="inactive", data-id=item.id
+                                            ,class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Dừng hoạt động
+                                    td(class="")
+                                        div(class="flex items-center gap-[5px]")
+                                            if (role.permissions.includes("accounts_edit"))
+                                                a(href=`${prefixAdmin}/accounts/edit/${item.id}` class="text-[#000] bg-[#FFC107] hover:bg-[#E0A800] border-none p-[10px] rounded-[5px] cursor-pointer") Sửa 
+                                                button(class="border-none bg-[#DC3545] hover:bg-[#C82333] text-[#ffff] p-[11.5px] rounded-[5px] cursor-pointer" data-id=item.id delete-button) Xóa
+                                            a(href=`${prefixAdmin}/accounts/detail/${item.id}` class="text-[#ffff] bg-[#6B747C] hover:bg-[#5A6268] border-none p-[10px] rounded-[5px] mr-[5px] cursor-pointer") Chi tiết 
+
+        script(src="/admin/js/script.js")  

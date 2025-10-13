@@ -4,87 +4,89 @@ include ../../mixins/select-tree.pug
 
 block main 
 
-    +alert-error('1000')
+    if (role.permissions.includes("products-category_edit"))
 
-    h1(class="mb-[4px]") Chỉnh sửa danh mục sản phẩm
+        +alert-error('1000')
 
-    form(action=`${prefixAdmin}/products-category/edit/${record.id}?_method=PATCH` id="edit-records-category-form" enctype="multipart/form-data" method="POST") 
-        div(class="mt-[15px]") 
-            label(for="title") Tiêu đề
-            input(
-                type="text"
-                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
-                id="title"
-                name="title"
-                value=record.title
-            )
-        div(class="mt-[15px]") 
-            label(for="parent_id") Danh mục cha
-            select(name="parent_id" id="parent_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
-                option(value="") -- Chọn danh mục cha --
-                if (records) 
-                    +select-tree(records, 1 ,record.parent_id)
-        div(class="mt-[15px]") 
-            label(for="desc") Mô tả
-            textarea(
-                rows="5"
-                id="desc"
-                name="description"
-                class="w-full outline-none p-[15px] mt-[5px] textarea-mce"
-                value=record.description
-            ) !{record.description}
-        div(class="mt-[15px]") 
-            label(for="thumbnail") Ảnh
-            div(class=" p-[15px] mt-[5px] outline-none overflow-hidden border rounded-[8px]")
-                input(
-                    type="file"
-                    class="w-full"
-                    id="thumbnail"
-                    name="thumbnail"
-                    accept="image/*"
-                )
-                img(id="blah" src=record.thumbnail alt="your image" class="w-[500px] object-cover mt-[5px] border rounded-[8px] w-[100px]")
-        div(class="mt-[15px]") 
-            label(for="position") Vị trí
-            input(
-                type="number"
-                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
-                id="position"
-                name="position"
-                value=record.position
-                min="0" 
-                placeholder="Tự động tăng"
-                
-            )
-        div(class="mt-[15px] flex items-center gap-[15px]") 
-            div 
-                input(
-                    type="radio"
-                    id="statusActive"
-                    name="status"
-                    value="active"
-                    checked=(record.status == "active" ? true : false)
-                )
-                label(for="statusActive") Hoạt động
-            div 
-                input(
-                    type="radio"
-                    id="statusInactive"
-                    name="status"
-                    value="inactive"
-                    checked=(record.status == "inactive" ? true : false)
-                )
-                label(for="statusInactive") Dừng hoạt động
-        div(class="mt-[20px]") 
-            button(
-                type="submit"
-                class="p-[15px] text-[18px] rounded-[8px] bg-[#0071E1] hover:bg-[#0066CC] border-none text-[#ffff] cursor-pointer"
-            ) Cập nhật
+        h1(class="mb-[4px]") Chỉnh sửa danh mục sản phẩm
 
+        form(action=`${prefixAdmin}/products-category/edit/${record.id}?_method=PATCH` id="edit-records-category-form" enctype="multipart/form-data" method="POST") 
+            div(class="mt-[15px]") 
+                label(for="title") Tiêu đề
+                input(
+                    type="text"
+                    class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                    id="title"
+                    name="title"
+                    value=record.title
+                )
+            div(class="mt-[15px]") 
+                label(for="parent_id") Danh mục cha
+                select(name="parent_id" id="parent_id" class="w-full p-[15px] mt-[5px] rounded-[8px]")
+                    option(value="") -- Chọn danh mục cha --
+                    if (records) 
+                        +select-tree(records, 1 ,record.parent_id)
+            div(class="mt-[15px]") 
+                label(for="desc") Mô tả
+                textarea(
+                    rows="5"
+                    id="desc"
+                    name="description"
+                    class="w-full outline-none p-[15px] mt-[5px] textarea-mce"
+                    value=record.description
+                ) !{record.description}
+            div(class="mt-[15px]") 
+                label(for="thumbnail") Ảnh
+                div(class=" p-[15px] mt-[5px] outline-none overflow-hidden border rounded-[8px]")
+                    input(
+                        type="file"
+                        class="w-full"
+                        id="thumbnail"
+                        name="thumbnail"
+                        accept="image/*"
+                    )
+                    img(id="blah" src=record.thumbnail alt="your image" class="w-[500px] object-cover mt-[5px] border rounded-[8px] w-[100px]")
+            div(class="mt-[15px]") 
+                label(for="position") Vị trí
+                input(
+                    type="number"
+                    class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                    id="position"
+                    name="position"
+                    value=record.position
+                    min="0" 
+                    placeholder="Tự động tăng"
                     
-    script(src="/admin/js/script.js")  
-       
+                )
+            div(class="mt-[15px] flex items-center gap-[15px]") 
+                div 
+                    input(
+                        type="radio"
+                        id="statusActive"
+                        name="status"
+                        value="active"
+                        checked=(record.status == "active" ? true : false)
+                    )
+                    label(for="statusActive") Hoạt động
+                div 
+                    input(
+                        type="radio"
+                        id="statusInactive"
+                        name="status"
+                        value="inactive"
+                        checked=(record.status == "inactive" ? true : false)
+                    )
+                    label(for="statusInactive") Dừng hoạt động
+            div(class="mt-[20px]") 
+                button(
+                    type="submit"
+                    class="p-[15px] text-[18px] rounded-[8px] bg-[#0071E1] hover:bg-[#0066CC] border-none text-[#ffff] cursor-pointer"
+                ) Cập nhật
 
-    
+                        
+        script(src="/admin/js/script.js")  
+        
+
+        
 
 

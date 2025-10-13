@@ -268,7 +268,7 @@ module.exports.itemDetail = async (req, res) => {
         const product = await Products.findOne(find);
 
         res.render("admin/pages/products/detail", {
-            pageTitle: "Chỉnh sửa sản phẩm",
+            pageTitle: "Chi tiết sản phẩm",
             product: product
         });
     } catch (error) {

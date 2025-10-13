@@ -4,52 +4,62 @@ include ../../mixins/alert.pug
 
 block main 
 
-    +alert-success('1000')
-    +alert-error('1000')
+    if (role.permissions.includes("products-category_view"))
 
-    div(class="") 
-        h1 Danh mục sản phẩm
+        +alert-success('1000')
 
-    div(class=' mt-[30px] p-[20px] bg-[#EDEDED] flex rounded-[8px] flex-col gap-[20px]')
-        div(class="") Danh sách
+        div(class="") 
+            h1 Danh mục sản phẩm
+
+        div(class=' mt-[30px] p-[20px] bg-[#EDEDED] flex rounded-[8px] flex-col gap-[20px]')
+            div(class="") Danh sách
+            form(
+                action=`${prefixAdmin}/products/multi-change?_method=PATCH`
+                method="POST"
+                multi-change-form 
+                class="flex items-center justify-between "
+            )   
+                if (role.permissions.includes("products-category_edit"))
+                    div(class="flex gap-[10px]") 
+                        div 
+                            select(name="type", class="p-[15px]  outline-none border rounded-[8px]")
+                                option(value="" selected disabled) -- Chọn hành động --   
+                                option(value="active") Hoạt động 
+                                option(value="inactive") Dừng hoạt động 
+                                option(value="delete-all") Xóa tất cả
+                                option(value="position-change") Thay đổi vị trí
+                        div 
+                            input(
+                                type='text'
+                                name="ids"
+                                class="p-[15px] rounded-[8px] outline-none border hidden"
+                                val=""
+                                
+                            )
+                        button(class="p-[15px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] text-[#ffff] rounded-[8px]") Áp dụng
+                if (role.permissions.includes("products-category_create"))
+                    div 
+                        a(href=`${prefixAdmin}/products-category/create`) 
+                            div(class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") + Thêm mới
+            table(class="w-full border-collapse border " checkbox-multi)
+                thead(class="")
+                    tr(class="border-b-[2px] border-t border-[#DADADA] ")
+                        th(class="text-center")
+                            input(type="checkbox" name="checkall")
+                        th STT
+                        th(class="") Hình ảnh
+                        th(class="") Tiêu đề
+                        th(class="") Vị trí
+                        th(class="") Trạng thái
+                        th(class="") Hành động
+                tbody(class="") 
+                    +table-tree(records)
+
         form(
-            action=`${prefixAdmin}/products/multi-change?_method=PATCH`
+            action=""
             method="POST"
-            multi-change-form 
-            class="flex items-center justify-between "
-        )   
-            div(class="flex gap-[10px]") 
-                div 
-                    select(name="type", class="p-[15px]  outline-none border rounded-[8px]")
-                        option(value="" selected disabled) -- Chọn hành động --   
-                        option(value="active") Hoạt động 
-                        option(value="inactive") Dừng hoạt động 
-                        option(value="delete-all") Xóa tất cả
-                        option(value="position-change") Thay đổi vị trí
-                div 
-                    input(
-                        type='text'
-                        name="ids"
-                        class="p-[15px] rounded-[8px] outline-none border hidden"
-                        val=""
-                        
-                    )
-                button(class="p-[15px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] text-[#ffff] rounded-[8px]") Áp dụng
-            div 
-                a(href=`${prefixAdmin}/products-category/create`) 
-                    div(class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") + Thêm mới
-        table(class="w-full border-collapse border " checkbox-multi)
-            thead(class="")
-                tr(class="border-b-[2px] border-t border-[#DADADA] ")
-                    th(class="text-center")
-                        input(type="checkbox" name="checkall")
-                    th STT
-                    th(class="") Hình ảnh
-                    th(class="") Tiêu đề
-                    th(class="") Vị trí
-                    th(class="") Trạng thái
-                    th(class="") Hành động
-            tbody(class="") 
-                +table-tree(records)
-    script(src="/admin/js/script.js")    
-    script(src="/admin/js/product.js")    
+            id="change-status-form"
+            data-path=`${prefixAdmin}/products-category/change-status`
+        ) 
+        script(src="/admin/js/script.js")    
+        script(src="/admin/js/product.js")    
