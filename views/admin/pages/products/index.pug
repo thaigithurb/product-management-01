@@ -69,6 +69,7 @@ block main
                             th(class="") Vị trí
                             th(class="") Trạng thái
                             th(class="") Người tạo
+                            th(class="") Cập nhật gần đây
                             th(class="") Hành động
                     tbody(class="") 
                         each item, index in products
@@ -97,6 +98,10 @@ block main
                                     p #{item.account_fullName}
                                     if (item.createdBy.createdAt)
                                         +formatDateTime(item.createdBy.createdAt)
+                                td 
+                                    p #{item.account_fullName1}
+                                    if (item.updatedBy && item.updatedBy.length > 0)
+                                        +formatDateTime(item.updatedBy[item.updatedBy.length - 1].updatedAt)
                                 td(class="")
                                     div(class="flex items-center gap-[5px]")
                                         if (role.permissions.includes("products_edit"))
