@@ -42,6 +42,12 @@
 .mr-\[5px\] {
   margin-right: 5px;
 }
+.mr-\[10px\] {
+  margin-right: 10px;
+}
+.mb-\[3px\] {
+  margin-bottom: 3px;
+}
 .mb-\[4px\] {
   margin-bottom: 4px;
 }
@@ -522,6 +528,38 @@ li {
 }
 a {
   text-decoration: none;
+}
+.sub-menu {
+  position: relative;
+  z-index: 999;
+}
+.sub-menu ul {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #eae9e9;
+  min-width: 180px;
+  display: none;
+}
+.sub-menu:hover > ul {
+  display: block;
+}
+.sub-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #dddd;
+  position: relative;
+}
+.sub-menu ul li ul {
+  right: 100%;
+  left: auto;
+  top: 0;
+  margin-right: 0;
+}
+.sub-menu ul li:hover > ul {
+  display: block;
 }
 @property --tw-border-style {
   syntax: "*";

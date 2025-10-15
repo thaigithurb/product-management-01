@@ -1,14 +1,16 @@
+include ../mixins/sub-menu.pug
+
 header(class="w-full border-b border-[#9E9E9E]")
     div(class="w-[1200px] pt-[5px] pb-[5px] mx-auto flex items-center justify-between")
         div(class="w-[10%]")
             a(href="/")
                 img(class="w-full", src="/images/logo.svg", alt="logo")  
             
-        ul(class="flex gap-[10px]")
-            li
-                a(href="/", class="text-[#007BFF]") Trang chủ
-            li
-                a(href=`/products`, class="text-[#007BFF]") Sản phẩm
-            
-
-
+        nav(class="inner-menu")
+            ul(class="flex gap-[10px]")
+                li
+                    a(href="/", class="text-[#007BFF]") Trang chủ
+                li(class="sub-menu")
+                    -const pathProduct = "/products"
+                    a(href=`/products`, class="text-[#007BFF]") Sản phẩm
+                    +sub-menu(layoutProductsCategory, pathProduct)

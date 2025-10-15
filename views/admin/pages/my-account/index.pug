@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+
+        +alert-success('1000')
+
+        if(user.fullName)
+            img(src=user.avatar, alt="" class="w-[150px]")
+        else 
+            img(src="admin/images/avatar.png", alt="" class="w-[150px] mb-[3px]")
+
+        if(user.fullName)
+            div(class="mb-[24px]") Họ tên: 
+                b #{user.fullName}
+                
+        if(user.email)
+            div(class="mb-[24px]") Email: 
+                b #{user.email}
+
+        if(user.phone)
+            div(class="mb-[24px]") Số điện thoại: 
+                b #{user.phone}
+        if(user.status)
+            div(class="mb-[24px]") Trạng thái: 
+                b #{user.status}
+        if(role.title)
+            div(class="mb-[24px]") Phân quyền: 
+                b #{role.title}
+   
+        a(href=`${prefixAdmin}/my-account/edit` class="text-[#ffff] hover:bg-[#0066CC] bg-[#0078F0] border-none p-[10px] rounded-[5px] cursor-pointer") Chỉnh Sửa 
+            
+
+        
+
+        
+
+
