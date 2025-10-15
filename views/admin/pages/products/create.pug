@@ -25,6 +25,24 @@ block main
                     option(value="") -- Chọn danh mục --
                     if (category) 
                         +select-tree(category)
+            div(class="mt-[15px] flex items-center gap-[15px]") 
+                div 
+                    input(
+                        type="radio"
+                        id="featured1"
+                        name="featured"
+                        value="1"
+                    )
+                    label(for="featured") Nổi bật
+                div 
+                    input(
+                        type="radio"
+                        id="featured0"
+                        name="featured"
+                        value="0"
+                        checked
+                    )
+                    label(for="featured") Không
             div(class="mt-[15px]") 
                 label(for="desc") Mô tả
                 textarea(
