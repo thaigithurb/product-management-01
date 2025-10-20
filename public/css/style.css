@@ -39,6 +39,9 @@
 .mt-\[30px\] {
   margin-top: 30px;
 }
+.mt-\[50px\] {
+  margin-top: 50px;
+}
 .mr-\[5px\] {
   margin-right: 5px;
 }
@@ -93,6 +96,9 @@
 .h-auto {
   height: auto;
 }
+.h-full {
+  height: 100%;
+}
 .w-\[10\%\] {
   width: 10%;
 }
@@ -137,6 +143,9 @@
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -348,6 +357,9 @@
 .py-\[10px\] {
   padding-block: 10px;
 }
+.py-\[50px\] {
+  padding-block: 50px;
+}
 .pt-\[5px\] {
   padding-top: 5px;
 }
@@ -372,11 +384,20 @@
 .pb-\[6px\] {
   padding-bottom: 6px;
 }
+.pb-\[10px\] {
+  padding-bottom: 10px;
+}
+.pb-\[15px\] {
+  padding-bottom: 15px;
+}
 .pb-\[20px\] {
   padding-bottom: 20px;
 }
 .pb-\[30px\] {
   padding-bottom: 30px;
+}
+.pb-\[50px\] {
+  padding-bottom: 50px;
 }
 .pl-\[10px\] {
   padding-left: 10px;

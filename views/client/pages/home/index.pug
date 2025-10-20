@@ -5,8 +5,11 @@ include ../../mixins/products-layout.pug
 block main 
 
 
-    div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
+    div(class="w-[1200px] mx-auto py-[50px]")
         div
             +box-head("Sản phẩm nổi bật")
-            +products-grid(products)
+            +products-grid(featuredProducts)
+        div(class="mt-[50px]")
+            +box-head("Sản phẩm mới nhất")
+            +products-grid(newProducts)
                             

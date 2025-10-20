@@ -8,18 +8,30 @@ const productHelper = require("../../helpers/product");
 // [GET] / 
 module.exports.index = async (req, res) => {
 
+    // Hiển thị sản phẩm nổi bật 
     const featuredProducts = await Products.find({
         status: "active",
         deleted: false,
         featured: "1"
-    }).sort({
-        position: "asc"
     }).limit(4);
 
-    const newProducts = productHelper.productNewPrice(featuredProducts);
+    const records = productHelper.productNewPrice(featuredProducts);
+    // Hiển thị sản phẩm nổi bật
+
+    // hiển thị sản phẩm mới nhất
+     const newProducts = await Products.find({
+        status: "active",
+        deleted: false,
+    }).sort({
+        position: "desc"
+    }).limit(8);
+
+     const records1 = productHelper.productNewPrice(newProducts);
+    // hiển thị sản phẩm mới nhất
 
     res.render("client/pages/home/index.pug", {
         pageTitle: "Trang chủ",
-        products: newProducts
+        featuredProducts: records,
+        newProducts: records1,
     })
 }

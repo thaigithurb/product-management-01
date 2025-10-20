@@ -11,8 +11,6 @@ module.exports.category = async (req, res, next) => {
 
     const newProductsCategory = createTreeHelper.tree(productsCategory);
 
-    console.log(newProductsCategory);
-
     res.locals.layoutProductsCategory = newProductsCategory
     next();
 }
