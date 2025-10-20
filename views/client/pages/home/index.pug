@@ -1,4 +1,12 @@
 extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/products-layout.pug
 
 block main 
-    h1 trang chủ
+
+
+    div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
+        div
+            +box-head("Sản phẩm nổi bật")
+            +products-grid(products)
+                            

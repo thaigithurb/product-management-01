@@ -1,5 +1,7 @@
 const Products = require("../../models/products.model");
+const productHelper = require("../../helpers/product");
 
+// [GET] /admin/products/:slug
 module.exports.index = async (req, res) => {
 
     const products = await Products.find(
@@ -9,16 +11,19 @@ module.exports.index = async (req, res) => {
         }
     ).sort({ position: "asc" });
 
+    const newProducts = productHelper.productNewPrice(products);
+    
+
     res.render("client/pages/products/index.pug", {
         pageTitle: "Trang danh sách sản phẩm",
-        products: products
+        products: newProducts
     })
 }
 
 // [GET] /admin/products/:slug
 module.exports.itemDetail = async (req, res) => {
 
-     try {
+    try {
         const find = {
             deleted: false,
             slug: req.params.slug,

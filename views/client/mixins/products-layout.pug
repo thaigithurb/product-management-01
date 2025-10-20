@@ -1,0 +1,15 @@
+mixin products-grid(products)
+    div(class="grid grid-cols-4 gap-[20px]")
+            each item in products
+                a(href=`/products/${item.slug}` class=`relative product-item  overflow-hidden border border-[#9E9E9E] rounded-[8px] `)
+                    if item.featured == 1
+                        span(class="inner-featured") Nổi bật
+                    div  
+                        div(class="overflow-hidden") 
+                            img(class="h-[100%] w-[100%] object-contain" src=item.thumbnail, alt="abc") 
+                        div(class="p-[10px] ") 
+                            div(class="pb-[5px] text-[22px] text-[#000]")  #{item.title}
+                            div(class="pb-[5px] text-[22px] text-[#4ACA6A]") $#{item.newPrice}
+                            if (item.discountPercentage > 0)
+                                div(class="pb-[5px] text-[22px] line-through text-[#F70000]") $#{item.price}
+                                div(class="bg-[#F70000] text-[#ffff] w-fit p-[4px] rounded-[8px] text-[12px]") #{item.discountPercentage}% 

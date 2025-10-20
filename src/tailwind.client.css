@@ -69,3 +69,18 @@ a {
     display: block;
 }
 /* End sub-menu */
+
+
+/* Product item featured badge */
+.product-item .inner-featured {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: green;
+    color: white;
+    padding: 3px 6px;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+}
+/* End product item featured badge */
