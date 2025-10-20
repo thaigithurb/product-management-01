@@ -24,6 +24,9 @@
 .mx-auto {
   margin-inline: auto;
 }
+.my-\[50px\] {
+  margin-block: 50px;
+}
 .mt-\[5px\] {
   margin-top: 5px;
 }
@@ -452,6 +455,9 @@
 }
 .text-\[\#001700\] {
   color: #001700;
+}
+.text-\[\#DC3545\] {
+  color: #DC3545;
 }
 .text-\[\#F70000\] {
   color: #F70000;

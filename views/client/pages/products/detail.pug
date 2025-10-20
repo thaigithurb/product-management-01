@@ -3,15 +3,28 @@ extends ../../layouts/default.pug
 
 block main 
 
-    div(class="w-[1200px] mx-auto")
+    div(class="w-[1200px] mx-auto my-[50px]")
 
         if(product.title)
             h1(class="mb-[24px]") #{product.title}
 
-        if(product.price)
+        if(product.thumbnail)
+            div(class="mb-[24px]") 
+                img(src=product.thumbnail, class="w-[200px]")
+
+        if(product.category.title)
+            div(class="mb-[24px] ") Danh mục:
+                b  #{product.category.title}
+
+        if(product.discountPercentage)
+            div(class="mb-[24px]") Giá: 
+                b $#{product.newPrice}
+            div(class="mb-[24px]") Giá gốc: 
+                b(class="line-through text-[#F70000]") $#{product.price}
+        else
             div(class="mb-[24px]") Giá: 
                 b $#{product.price}
-                
+
         if(product.discountPercentage)
             div(class="mb-[24px]") Giảm giá: 
                 b #{product.discountPercentage}%
@@ -19,10 +32,10 @@ block main
         if(product.stock)
             div(class="mb-[24px]") Còn lại: 
                 b #{product.stock}
+        else
+            div(class="mb-[24px]") Còn lại: 
+                b(class="text-[#F70000]") Hết hàng
         
-        if(product.thumbnail)
-            div(class="mb-[24px]") 
-                img(src=product.thumbnail, class="w-[200px]")
         if(product.status)
             div(class="mb-[24px]") 
                 span Trạng thái:      
@@ -37,6 +50,13 @@ block main
 
         if(product.description)
             div(class="mb-[24px]") !{product.description}
+
+        form(action=`/cart/add/${product.id}` method="POST")
+            div(class="mb-[24px]")
+                input(type="number" name="quantity" value="1" min="1" max=product.stock)
+            button Thêm vào giỏ hàng
+
+       
 
     
        

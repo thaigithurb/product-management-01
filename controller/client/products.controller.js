@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
         status: "active",
         deleted: false
     }).sort({
-        position: "asc"
+        position: "desc"
     });
 
     const newProducts = productHelper.productNewPrice(products);
@@ -61,15 +61,25 @@ module.exports.itemDetail = async (req, res) => {
     try {
         const find = {
             deleted: false,
-            slug: req.params.slug,
+            slug: req.params.slugProduct,
             status: "active"
         };
 
         const product = await Products.findOne(find);
 
+        const productCategory = await ProductsCategory.findOne({
+            _id: product.product_category_id,
+            deleted: false,
+            status: "active"
+        });
+
+        product.category = productCategory;
+
+        const newProduct = productHelper.detailProductNewPrice(product);
+
         res.render("client/pages/products/detail.pug", {
             pageTitle: product.title,
-            product: product
+            product: newProduct
         });
     } catch (error) {
 

@@ -1,7 +1,7 @@
 mixin products-grid(products)
     div(class="grid grid-cols-4 gap-[20px]")
             each item in products
-                a(href=`/products/${item.slug}` class=`relative product-item  overflow-hidden border border-[#9E9E9E] rounded-[8px] `)
+                a(href=`/products/detail/${item.slug}` class=`relative product-item  overflow-hidden border border-[#9E9E9E] rounded-[8px] `)
                     if item.featured == 1
                         span(class="inner-featured") Nổi bật
                     div  
