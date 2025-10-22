@@ -5,6 +5,12 @@ header(class="w-full border-b border-[#9E9E9E]")
         div(class="w-[10%]")
             a(href="/")
                 img(class="w-full", src="/images/logo.svg", alt="logo")  
+
+        div(class="w-[50%]")
+            form(action="/search" class="w-[100%]")
+                div(class=" flex ")
+                    input(type="text" name="keyword" value=keyword class="p-[10px] w-[100%] border border-r-0 rounded-l-[8px] outline-none" placeholder="Nhập từ khóa...") 
+                    button(class="p-[10px] rounded-r-[8px] outline-none border border-[#0078F0] hover:bg-[#0066CC] bg-[#0078F0] cursor-pointer text-[#fff]" type='submit') Tìm  
             
         nav(class="inner-menu")
             ul(class="flex gap-[10px]")
