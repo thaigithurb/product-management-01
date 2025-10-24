@@ -1,8 +1,13 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/products-layout.pug
+include ../../mixins/alert.pug
 
 block main 
+
+    +alert-success('1000')
+    +alert-error('1000')
+
     div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
         +box-head(pageTitle)
 
@@ -40,3 +45,7 @@ block main
                 a(href="/checkout" class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") Thanh toán
         else 
             h3(class='text-center') Không có sản phẩm nào trong giỏ hàng
+
+
+    script(src="/admin/js/script.js")  
+        

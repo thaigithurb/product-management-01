@@ -1,0 +1,17 @@
+mixin alert-success(time) 
+    - if (messages.success)
+        .message.info
+            div(
+                class="bg-[#D1E7DD] border flex gap-[10px]  border-[#A3CFBB] text-[#001700] p-[20px] rounded-[10px] items-center" 
+                data-time=time
+                show-alert
+            ) #{messages.success} <span close-alert class="flex items-center bg-[#ffff] rounded-[50%] inline-block w-[24px] h-[24px] text-center font-[600] leading-[24px] cursor-pointer">x</span>
+
+mixin alert-error(time) 
+    - if (messages.error)
+        .message.info
+            div(
+                class="bg-[#F8D7DA] border flex gap-[10px]  border-[#F5C6CB] text-[#001700] p-[20px] rounded-[10px] items-center" 
+                data-time=time
+                show-alert
+            ) #{messages.error} <span close-alert class="flex items-center bg-[#ffff] rounded-[50%] inline-block w-[24px] h-[24px] text-center font-[600] leading-[24px] cursor-pointer">x</span>

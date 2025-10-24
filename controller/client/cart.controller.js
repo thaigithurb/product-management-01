@@ -23,9 +23,9 @@ module.exports.index = async (req, res) => {
 
             productInfo.newPriceProduct = productHelper.detailProductNewPrice(productInfo);
 
-           item.productInfo = productInfo;
-        
-           item.totalPrice = item.productInfo.newPrice * item.quantity;
+            item.productInfo = productInfo;
+
+            item.totalPrice = item.productInfo.newPrice * item.quantity;
         }
     }
 
@@ -95,4 +95,34 @@ module.exports.add = async (req, res) => {
         console.error("Add to cart error:", error);
 
     }
+}
+
+// [GET] /delete/:productId
+module.exports.delete = async (req, res) => {
+
+    try {
+        const cartId = req.cookies.cartId;
+        const productId = req.params.productId;
+
+        await Cart.updateOne({
+            _id: cartId
+        }, {
+            $pull: {
+                products: {
+                    product_id : productId
+                }
+            }
+        });
+
+        req.flash("success", "Đã xóa sản phẩm trong giỏ hàng");
+        res.redirect(`/cart`);
+
+    } catch (error) {
+        console.log(error);
+        req.flash("success", "Đã xóa sản phẩm trong giỏ hàng");
+        res.redirect(`/cart`);
+    }
+
+
+    res.send("ok");
 }
