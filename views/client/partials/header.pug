@@ -20,3 +20,5 @@ header(class="w-full border-b border-[#9E9E9E]")
                     -const pathProduct = "/products"
                     a(href=`/products`, class="text-[#007BFF]") Sản phẩm
                     +sub-menu(layoutProductsCategory, pathProduct)
+                li
+                    a(href="/cart", class="text-[#007BFF]") Giỏ hàng (#{miniCart})

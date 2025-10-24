@@ -47,10 +47,11 @@ block main
         if(product.description)
             div(class="mb-[24px]") !{product.description}
 
-        form(action=`/cart/add/${product.id}` method="POST")
-            div(class="mb-[24px]")
-                input(type="number" name="quantity" value="1" min="1" max=product.stock)
-            button Thêm vào giỏ hàng
+        if(product.stock)
+            form(action=`/cart/add/${product.id}` method="POST")
+                div(class="mb-[24px]")
+                    input(type="number" name="quantity" value="1" min="1" max=product.stock)
+                button(type="submit") Thêm vào giỏ hàng
 
        
 

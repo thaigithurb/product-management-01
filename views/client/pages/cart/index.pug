@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/products-layout.pug
+
+block main 
+    div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
+        +box-head(pageTitle)
+
+        if (cartDetail.products.length > 0)
+            div 
+                table(class=" w-full border border-collapse ")
+                    thead 
+                        tr
+                            th(class="border ") STT
+                            th(class="border ") Ảnh
+                            th(class="border ") Tên
+                            th(class="border ") Giá
+                            th(class="border ") Số lượng
+                            th(class="border  ") Tổng tiền
+                            th(class="border  ") Hành động
+                        tbody 
+                            each item, index in cartDetail.products
+                                tr 
+                                    td(class="border   text-center") #{index + 1}
+                                    td(class="border  text-center ") 
+                                        img(src=item.productInfo.thumbnail, alt="Sản phẩm 1" class="w-[80px]")
+                                    td(class="border text-center ") 
+                                        a(href=`/products/detail/${item.productInfo.slug}` class="text-[#007BFF]") #{item.productInfo.title}
+                                    td(class="border text-center") $#{item.productInfo.newPrice}
+                                    td(class="border  text-center") 
+                                        input(type="number" value=item.quantity min="1" item-id=item.product_id class='w-[60px]')
+                                    td(class="border text-center") $#{item.totalPrice}
+                                    td(class="border text-center ") 
+                                        a(href=`/cart/delete/${item.product_id}`  class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Xóa
+
+                
+            h3(class='text-right') Tổng đơn hàng: $#{cartDetail.totalAmount}
+
+            div(class="text-right mt-[30px]")
+                a(href="/checkout" class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") Thanh toán
+        else 
+            h3(class='text-center') Không có sản phẩm nào trong giỏ hàng
