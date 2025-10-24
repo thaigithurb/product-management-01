@@ -109,7 +109,7 @@ module.exports.delete = async (req, res) => {
         }, {
             $pull: {
                 products: {
-                    product_id : productId
+                    product_id: productId
                 }
             }
         });
@@ -125,4 +125,35 @@ module.exports.delete = async (req, res) => {
 
 
     res.send("ok");
+}
+
+// [GET] /update/:productId/:quantity
+module.exports.update = async (req, res) => {
+
+    try {
+        const cartId = req.cookies.cartId;
+
+        const productId = req.params.productId;
+        const quantity = req.params.quantity;
+
+        await Cart.updateOne({
+            _id: cartId,
+            "products.product_id": productId,
+        }, {
+            $set: {
+                "products.$.quantity": quantity,
+            }
+        });
+
+        req.flash("success", "Đã cập nhật số lượng sản phẩm");
+
+        res.redirect(`/cart`);
+
+    } catch (error) {
+        req.error("error", "Cập nhật số lượng sản phẩm không thành công");
+
+        res.redirect(`/cart`);
+    }
+
+
 }

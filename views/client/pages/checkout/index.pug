@@ -1,0 +1,49 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/products-layout.pug
+include ../../mixins/alert.pug
+
+block main 
+
+    +alert-success('1000')
+    +alert-error('1000')
+
+    div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
+        +box-head(pageTitle)
+
+        div 
+            table(class=" w-full border-[#C6C8CA] border-collapse ")
+                thead 
+                    tr
+                        th(class="border border-[#C6C8CA] py-[5px]") STT
+                        th(class="border border-[#C6C8CA] py-[5px]") Ảnh
+                        th(class="border border-[#C6C8CA] py-[5px]") Tên
+                        th(class="border border-[#C6C8CA] py-[5px]") Giá
+                        th(class="border border-[#C6C8CA] py-[5px]") Số lượng
+                        th(class="border  border-[#C6C8CA] py-[5px]") Tổng tiền
+                    tbody 
+                        each item, index in cartDetail.products
+                            tr 
+                                td(class="border border-[#C6C8CA]  text-center") #{index + 1}
+                                td(class="border border-[#C6C8CA] text-center ") 
+                                    img(src=item.productInfo.thumbnail, alt="Sản phẩm 1" class="w-[80px]")
+                                td(class="border border-[#C6C8CA] text-center ") #{item.productInfo.title}           
+                                td(class="border border-[#C6C8CA] text-center") $#{item.productInfo.newPrice}
+                                td(class="border border-[#C6C8CA]  text-center") #{item.quantity}
+                                td(class="border border-[#C6C8CA] text-center") $#{item.totalPrice}
+            
+            h3(class='text-right') Tổng đơn hàng: $#{cartDetail.totalAmount}
+
+        form(action="/checkout/order" method="POST" class="mt-[30px] border border-[#C6C8CA] rounded-[8px] p-[20px]")
+            div(class="mb-[20px]")
+                label Họ tên
+                input(type="text" class="w-full mt-[5px] border border-[#C6C8CA] outline-none rounded-[8px] p-[10px]" name="fullName" id="fullName" required) 
+            div(class="mb-[20px]")
+                label Số điện thoại
+                input(type="text" class="w-full mt-[5px] border border-[#C6C8CA] outline-none rounded-[8px] p-[10px]" name="phone" id="phone" required) 
+            div(class="mb-[20px]")
+                label Địa chỉ
+                input(type="text" class="w-full mt-[5px] border border-[#C6C8CA] outline-none rounded-[8px] p-[10px]" name="address" id="address" required) 
+            button(class="p-[10px] w-full border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]" type="submit") ĐẶT HÀNG
+
+        

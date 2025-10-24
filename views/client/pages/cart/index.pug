@@ -12,40 +12,36 @@ block main
         +box-head(pageTitle)
 
         if (cartDetail.products.length > 0)
+
             div 
-                table(class=" w-full border border-collapse ")
+                table(class=" w-full border-[#C6C8CA] border-collapse ")
                     thead 
                         tr
-                            th(class="border ") STT
-                            th(class="border ") Ảnh
-                            th(class="border ") Tên
-                            th(class="border ") Giá
-                            th(class="border ") Số lượng
-                            th(class="border  ") Tổng tiền
-                            th(class="border  ") Hành động
+                            th(class="border border-[#C6C8CA]") STT
+                            th(class="border border-[#C6C8CA]") Ảnh
+                            th(class="border border-[#C6C8CA]") Tên
+                            th(class="border border-[#C6C8CA]") Giá
+                            th(class="border border-[#C6C8CA]") Số lượng
+                            th(class="border  border-[#C6C8CA]") Tổng tiền
                         tbody 
                             each item, index in cartDetail.products
                                 tr 
-                                    td(class="border   text-center") #{index + 1}
-                                    td(class="border  text-center ") 
+                                    td(class="border border-[#C6C8CA]  text-center") #{index + 1}
+                                    td(class="border border-[#C6C8CA] text-center ") 
                                         img(src=item.productInfo.thumbnail, alt="Sản phẩm 1" class="w-[80px]")
-                                    td(class="border text-center ") 
-                                        a(href=`/products/detail/${item.productInfo.slug}` class="text-[#007BFF]") #{item.productInfo.title}
-                                    td(class="border text-center") $#{item.productInfo.newPrice}
-                                    td(class="border  text-center") 
-                                        input(type="number" value=item.quantity min="1" item-id=item.product_id class='w-[60px]')
-                                    td(class="border text-center") $#{item.totalPrice}
-                                    td(class="border text-center ") 
-                                        a(href=`/cart/delete/${item.product_id}`  class="bg-[#DC3545] font-[600] text-[#ffff] p-[5px] rounded-[8px] hover:bg-[#C82333]") Xóa
-
+                                    td(class="border border-[#C6C8CA] text-center ") #{item.productInfo.title}           
+                                    td(class="border border-[#C6C8CA] text-center") $#{item.productInfo.newPrice}
+                                    td(class="border border-[#C6C8CA]  text-center") #{item.quantity}
+                                    td(class="border border-[#C6C8CA] text-center") $#{item.totalPrice}
                 
-            h3(class='text-right') Tổng đơn hàng: $#{cartDetail.totalAmount}
+                h3(class='text-right') Tổng đơn hàng: $#{cartDetail.totalAmount}
+                div(class="text-right mt-[30px]")
+                    a(href="/checkout" class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") Thanh toán
 
-            div(class="text-right mt-[30px]")
-                a(href="/checkout" class="p-[13px] border border-[#28A745] cursor-pointer hover:bg-[#1D7E33] bg-[#28A745] text-[#ffff] rounded-[8px]") Thanh toán
         else 
-            h3(class='text-center') Không có sản phẩm nào trong giỏ hàng
+            h3(class="text-center") Không có sản phẩm nào trong giỏ hàng
+           
+       
+    script(src="/client/js/cart.js")  
 
-
-    script(src="/client/js/script.js")  
         
