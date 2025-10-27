@@ -37,8 +37,6 @@ module.exports.index = async (req, res) => {
     })
 }
 
-
-
 // [GET] /add/:productId
 module.exports.add = async (req, res) => {
 

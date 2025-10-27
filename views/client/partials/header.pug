@@ -8,17 +8,31 @@ header(class="w-full border-b border-[#9E9E9E]")
 
         div(class="w-[50%]")
             form(action="/search" class="w-[100%]")
-                div(class=" flex ")
-                    input(type="text" name="keyword" value=keyword class="p-[10px] w-[100%] border border-r-0 rounded-l-[8px] outline-none" placeholder="Nhập từ khóa...") 
-                    button(class="p-[10px] rounded-r-[8px] outline-none border border-[#0078F0] hover:bg-[#0066CC] bg-[#0078F0] cursor-pointer text-[#fff]" type='submit') Tìm  
+                div(class="flex")
+                    input(
+                        type="text" 
+                        name="keyword" 
+                        value=keyword 
+                        class="p-[10px] w-[100%] border border-r-0 rounded-l-[8px] outline-none" 
+                        placeholder="Nhập từ khóa..."
+                    ) 
+                    button(
+                        class="p-[10px] rounded-r-[8px] outline-none border border-[#0078F0] hover:bg-[#0066CC] bg-[#0078F0] cursor-pointer text-[#fff]" 
+                        type="submit"
+                    ) Tìm  
             
         nav(class="inner-menu")
             ul(class="flex gap-[10px]")
                 li
-                    a(href="/", class="text-[#007BFF]") Trang chủ
+                    a(href="/" class="text-[#007BFF]") Trang chủ
                 li(class="sub-menu")
-                    -const pathProduct = "/products"
-                    a(href=`/products`, class="text-[#007BFF]") Sản phẩm
+                    - const pathProduct = "/products"
+                    a(href="/products" class="text-[#007BFF]") Sản phẩm
                     +sub-menu(layoutProductsCategory, pathProduct)
                 li
-                    a(href="/cart", class="text-[#007BFF]") Giỏ hàng (#{miniCart})
+                    a(href="/cart" class="text-[#007BFF]") Giỏ hàng (#{miniCart})
+                li
+                    a(href="/user/login" class="text-[#007BFF]") Đăng nhập
+                li
+                    a(href="/user/register" class="text-[#007BFF]") Đăng ký
+                
