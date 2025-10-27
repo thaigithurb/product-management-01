@@ -31,8 +31,13 @@ header(class="w-full border-b border-[#9E9E9E]")
                     +sub-menu(layoutProductsCategory, pathProduct)
                 li
                     a(href="/cart" class="text-[#007BFF]") Giỏ hàng (#{miniCart})
-                li
-                    a(href="/user/login" class="text-[#007BFF]") Đăng nhập
-                li
-                    a(href="/user/register" class="text-[#007BFF]") Đăng ký
+
+                if (user) 
+                    li
+                        a(href="/user/logout" class="text-[#007BFF]") Đăng xuất
+                else
+                    li
+                        a(href="/user/login" class="text-[#007BFF]") Đăng nhập
+                    li
+                        a(href="/user/register" class="text-[#007BFF]") Đăng ký
                 
