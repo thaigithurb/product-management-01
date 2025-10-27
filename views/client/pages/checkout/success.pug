@@ -10,3 +10,48 @@ block main
 
     div(class="w-[1200px] mx-auto pt-[30px] pb-[30px]")
         +box-head(pageTitle)
+        div(class="bg-[#D4EDDA] border border-[#C3E6CB] text-[#155724] rounded-[3px] p-[20px]") Chúc mừng bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhât.
+
+        div(class="mt-[20px]")
+            h2 Thông tin cá nhân
+            table(class="w-full border-[#C6C8CA] border-collapse")
+                tbody 
+                    tr 
+                        td(class="border  border-[#C6C8CA] p-[10px]") Họ tên
+                        td(class="border  border-[#C6C8CA] p-[10px]") 
+                            b #{order.userInfo.fullName}
+                    tr 
+                        td(class="border  border-[#C6C8CA] p-[10px]") Số điện thoại
+                        td(class="border  border-[#C6C8CA] p-[10px]") 
+                            b #{order.userInfo.phone}
+                    tr 
+                        td(class="border  border-[#C6C8CA] p-[10px]") Địa chỉ
+                        td(class="border  border-[#C6C8CA] p-[10px]") 
+                            b #{order.userInfo.address}
+
+        div(class="mt-[20px]")
+            h2 Thông tin đơn hàng
+            table(class=" w-full border-[#C6C8CA] border-collapse ")
+                thead 
+                    tr
+                        th(class="border border-[#C6C8CA] py-[5px]") STT
+                        th(class="border border-[#C6C8CA] py-[5px]") Ảnh
+                        th(class="border border-[#C6C8CA] py-[5px]") Tên
+                        th(class="border border-[#C6C8CA] py-[5px]") Giá
+                        th(class="border border-[#C6C8CA] py-[5px]") Số lượng
+                        th(class="border  border-[#C6C8CA] py-[5px]") Tổng tiền
+                    tbody 
+                        each item, index in order.products
+                            tr 
+                                td(class="border border-[#C6C8CA]  text-center") #{index + 1}
+                                td(class="border border-[#C6C8CA] text-center ") 
+                                    img(src=item.productInfo.thumbnail, alt="Sản phẩm 1" class="w-[80px]")
+                                td(class="border border-[#C6C8CA] text-center ") #{item.productInfo.title}           
+                                td(class="border border-[#C6C8CA] text-center") $#{item.newPrice}
+                                td(class="border border-[#C6C8CA]  text-center") #{item.quantity}
+                                td(class="border border-[#C6C8CA] text-center") $#{item.totalPrice}
+
+        h1(class="text-right text-[30px] mt-[20px]") Tổng đơn hàng: $#{order.totalPrice}
+
+
+            
