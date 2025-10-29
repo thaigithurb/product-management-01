@@ -204,3 +204,11 @@ module.exports.resetPasswordPost = async (req, res) => {
 
     res.send("ok");
 }
+
+// [GET] /user/info
+module.exports.info = async (req, res) => {
+
+    res.render("client/pages/user/info.pug", {
+        pageTitle: "Thông tin tài khoản",
+    })
+}
