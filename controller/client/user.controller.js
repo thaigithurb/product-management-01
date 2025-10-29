@@ -3,6 +3,7 @@ const ForgotPassword = require("../../models/forgot-password.model");
 const md5 = require("md5");
 const generateOtpHelper = require("../../helpers/generate-otp");
 const sendMailHelper = require("../../helpers/sendMail");
+const Cart = require("../../models/cart.model");
 
 // [GET] /user/register
 module.exports.register = async (req, res) => {
@@ -74,6 +75,18 @@ module.exports.loginPost = async (req, res) => {
         return;
     }
 
+    await Cart.updateOne({
+        _id: req.cookies.cartId,
+    }, { user_id: user.id });
+
+    const cart = await Cart.findOne({
+        user_id: user.id
+    });
+
+    if (cart) {
+        res.cookie("cartId", cart.user_id);
+    }
+
     res.cookie("tokenUser", user.tokenUser);
     req.flash("success", "Đăng nhập thành công!");
 
@@ -82,6 +95,8 @@ module.exports.loginPost = async (req, res) => {
 
 // [GET] /user/logout
 module.exports.logout = async (req, res) => {
+
+    res.clear("cartId");
 
     res.clearCookie("tokenUser");
     res.redirect("/");
