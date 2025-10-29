@@ -75,16 +75,18 @@ module.exports.loginPost = async (req, res) => {
         return;
     }
 
-    await Cart.updateOne({
-        _id: req.cookies.cartId,
-    }, { user_id: user.id });
-
     const cart = await Cart.findOne({
         user_id: user.id
     });
 
     if (cart) {
-        res.cookie("cartId", cart.user_id);
+        res.cookie("cartId", cart.id);
+    } else {
+        await Cart.updateOne({
+            _id: req.cookies.cartId,
+        }, {
+            user_id: user.id
+        });
     }
 
     res.cookie("tokenUser", user.tokenUser);
@@ -95,8 +97,6 @@ module.exports.loginPost = async (req, res) => {
 
 // [GET] /user/logout
 module.exports.logout = async (req, res) => {
-
-    res.clear("cartId");
 
     res.clearCookie("tokenUser");
     res.redirect("/");
@@ -173,7 +173,7 @@ module.exports.otpPasswordPost = async (req, res) => {
     });
 
     if (!obJectForgotPassword) {
-        req.flash( "error" ,"Mã OTP không hợp lệ");
+        req.flash("error", "Mã OTP không hợp lệ");
         res.redirect("user/password/otp");
         return;
     }
@@ -211,9 +211,11 @@ module.exports.resetPasswordPost = async (req, res) => {
 
     await User.updateOne({
         tokenUser: tokenUser,
-    }, { password: md5(newPassword) })
+    }, {
+        password: md5(newPassword)
+    })
 
-    res.clearCookie('tokenUser'); 
+    res.clearCookie('tokenUser');
 
     res.redirect("/user/login")
 
