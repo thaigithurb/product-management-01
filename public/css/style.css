@@ -24,9 +24,6 @@
 .mx-auto {
   margin-inline: auto;
 }
-.my-\[40px\] {
-  margin-block: 40px;
-}
 .my-\[50px\] {
   margin-block: 50px;
 }
@@ -192,9 +189,6 @@
 .overflow-hidden {
   overflow: hidden;
 }
-.rounded-\[2px\] {
-  border-radius: 2px;
-}
 .rounded-\[3px\] {
   border-radius: 3px;
 }
@@ -341,6 +335,9 @@
 }
 .bg-\[\#EDEDED\] {
   background-color: #EDEDED;
+}
+.bg-\[\#F2F2F2\] {
+  background-color: #F2F2F2;
 }
 .bg-\[\#F8D7DA\] {
   background-color: #F8D7DA;
