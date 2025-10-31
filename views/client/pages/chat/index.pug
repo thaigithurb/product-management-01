@@ -1,0 +1,40 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+
+block main 
+
+
+    div(class="w-[1200px] mx-auto py-[50px]")
+        div
+            +box-head(pageTitle)
+
+        <div class="chat-box">
+            <div class="messages">
+            <div class="message left">
+                <div class="name">Em Yêu</div>
+                <p>A ơi sang nhà e nha, nhà e không có ai ở nhà cả</p>
+            </div>
+            <div class="message right">
+                <p>Thế à? Ok e iu</p>
+            </div>
+            <div class="message left">
+                <div class="name">Em Yêu</div>
+                <p>Nhanh nha nhanh nha</p>
+            </div>
+            <div class="message right">
+                <p>Ck đến rồi mà thấy ai ở nhà đâu e? Khóa cửa mà :(</p>
+            </div>
+            <div class="message left">
+                <div class="name">Em Yêu</div>
+                <p>Thì em bảo nhà e không ai ở nhà mà :))</p>
+            </div>
+            </div>
+
+            <div class="input-bar">
+            <input type="text" placeholder="Nhập nội dung..." disabled />
+            <button class="send-btn text-[#ffff]"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+                            

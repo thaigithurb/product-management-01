@@ -6,8 +6,8 @@
 
 
 * {
-  box-sizing: border-box;
-  font-family: "Be Vietnam Pro", sans-serif;
+    box-sizing: border-box;
+    font-family: "Be Vietnam Pro", sans-serif;
 }
 
 
@@ -52,7 +52,7 @@ a {
     display: none;
 }
 
-.sub-menu:hover > ul {
+.sub-menu:hover>ul {
     display: block;
 
 }
@@ -71,9 +71,10 @@ a {
     margin-right: 0;
 }
 
-.sub-menu ul li:hover > ul {
+.sub-menu ul li:hover>ul {
     display: block;
 }
+
 /* End sub-menu */
 
 
@@ -89,6 +90,7 @@ a {
     font-size: 14px;
     border-radius: 8px;
 }
+
 /* End product item featured badge */
 
 
@@ -109,8 +111,99 @@ a {
     from {
         right: 15px;
     }
+
     to {
         right: -100%;
         display: none
     }
+}
+
+
+/* Add to tailwind.client.css */
+
+.chat-box {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.messages {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+.name {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.message p {
+    padding: 10px 14px;
+    border-radius: 16px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.left {
+    align-self: flex-start;
+}
+
+.left p {
+    background: #f2f2f2;
+    color: #333;
+    border-top-left-radius: 0;
+}
+
+.right {
+    align-self: flex-end;
+    text-align: right;
+}
+
+.right p {
+    background: #ff4da6;
+    color: #fff;
+    border-top-right-radius: 0;
+}
+
+.input-bar {
+    border-top: 1px solid #eee;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+}
+
+.input-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 20px;
+    background: #f7f7f7;
+    font-size: 14px;
+}
+
+.send-btn {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background: #ff4da6;
+    border: none;
+    cursor: pointer;
 }
