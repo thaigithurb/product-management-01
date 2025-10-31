@@ -1,0 +1,75 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main 
+
+    +alert-error('1000')
+
+    h1(class="mb-[4px]") Cài đặt chung
+
+    form(action=`${prefixAdmin}/settings/general?_method=PATCH` enctype="multipart/form-data" method="POST") 
+        div(class="mt-[15px]") 
+            label(for="websiteName") Tên website
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="websiteName"
+                name="websiteName"
+                value=(settingsGeneral ? settingsGeneral.websiteName : "")
+            )
+        div(class="mt-[15px]") 
+            label(for="logo") Logo
+            div(class=" p-[15px] mt-[5px] outline-none border rounded-[8px]")
+                input(
+                    type="file"
+                    class="w-full"
+                    id="logo"
+                    name="logo"
+                    accept="image/*"
+                    upload-preview-image
+                )
+                img(id="blah" src=(settingsGeneral ? settingsGeneral.logo : "#") alt="your image" class=`w-[500px] mt-[5px] border rounded-[8px] ${settingsGeneral.logo ? '' : 'hidden'}`)
+        div(class="mt-[15px]") 
+            label(for="phone") Số điện thoại
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="phone"
+                name="phone"   
+                value=settingsGeneral.phone
+            )
+        div(class="mt-[15px]") 
+            label(for="email") Email
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="email"
+                name="email"   
+                value=(settingsGeneral ? settingsGeneral.email : "")
+            )
+        div(class="mt-[15px]") 
+            label(for="address") Địa chỉ
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="address"
+                name="address"   
+                value=(settingsGeneral ? settingsGeneral.address : "")
+            )
+        div(class="mt-[15px]") 
+            label(for="copyright") Copyright
+            input(
+                type="text"
+                class="p-[15px] w-full mt-[5px] outline-none border rounded-[8px]"
+                id="copyright"
+                name="copyright"   
+                value=(settingsGeneral ? settingsGeneral.copyright : "")
+            )
+        div(class="mt-[20px]") 
+            button(
+                type="submit"
+                class="p-[15px] text-[18px] rounded-[8px] bg-[#0071E1] hover:bg-[#0066CC] border-none text-[#ffff] cursor-pointer"
+            ) Cập nhật
+
+                        
+    script(src="/admin/js/script.js")  
