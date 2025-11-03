@@ -33,7 +33,7 @@ const port = process.env.PORT;
 // socket.io 
 const server = createServer(app);
 const io = new Server(server);
-global.io = io;
+global._io = io;
 
 
 app.use(methodOverride('_method'));

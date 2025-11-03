@@ -5,15 +5,24 @@ const User = require("../../models/user.modal");
 module.exports.index = async (req, res) => {
 
     const userId = res.locals.user.id;
+    const fullName = res.locals.user.fullName;
 
     // socket.io 
-    io.once('connection', (socket) => {
+    global._io.once('connection', (socket) => {
         socket.on("CLIENT_SEND_MESSAGE", async (content) => {
+            // lưu vào db 
             const chat = new Chat({
                 user_id: userId,
                 content: content,
             });
             await chat.save();
+
+            // trả về client 
+            global._io.emit("SERVER_RETURN_MESSAGE", {
+                userId: userId,
+                fullName: fullName,
+                content: content
+            });
         })
     });
     // end socket.io 

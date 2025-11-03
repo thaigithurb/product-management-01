@@ -137,6 +137,9 @@ a {
     flex-direction: column;
     gap: 12px;
     flex-grow: 1;
+    height: 400px;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .message {

@@ -17,7 +17,7 @@ block main
                             div(class="name") #{chat.infoUser.fullName}
                         p #{chat.content}
 
-            form(action="" class="input-bar")
+            form(action="" class="input-bar" my-id=user.id my-name=user.fullName)
                 input(type="text" placeholder="Nhập nội dung..." name="content")
                 button(class="send-btn text-[#ffff]")
                     i(class="fa-solid fa-paper-plane")
