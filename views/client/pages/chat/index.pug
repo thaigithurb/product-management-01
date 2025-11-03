@@ -9,32 +9,17 @@ block main
         div
             +box-head(pageTitle)
 
-        <div class="chat-box">
-            <div class="messages">
-            <div class="message left">
-                <div class="name">Em Yêu</div>
-                <p>A ơi sang nhà e nha, nhà e không có ai ở nhà cả</p>
-            </div>
-            <div class="message right">
-                <p>Thế à? Ok e iu</p>
-            </div>
-            <div class="message left">
-                <div class="name">Em Yêu</div>
-                <p>Nhanh nha nhanh nha</p>
-            </div>
-            <div class="message right">
-                <p>Ck đến rồi mà thấy ai ở nhà đâu e? Khóa cửa mà :(</p>
-            </div>
-            <div class="message left">
-                <div class="name">Em Yêu</div>
-                <p>Thì em bảo nhà e không ai ở nhà mà :))</p>
-            </div>
-            </div>
+        div(class="chat-box")
+            div(class="messages")
+                each chat in chats 
+                    div(class=`message ${chat.user_id == user.id ? 'right' : 'left'}`)
+                        if (chat.user_id !== user.id)
+                            div(class="name") #{chat.infoUser.fullName}
+                        p #{chat.content}
 
-            <div class="input-bar">
-            <input type="text" placeholder="Nhập nội dung..." disabled />
-            <button class="send-btn text-[#ffff]"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
-        </div>
+            form(action="" class="input-bar")
+                input(type="text" placeholder="Nhập nội dung..." name="content")
+                button(class="send-btn text-[#ffff]")
+                    i(class="fa-solid fa-paper-plane")
 
                             
