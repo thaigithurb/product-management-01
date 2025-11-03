@@ -75,6 +75,9 @@
 .mb-\[30px\] {
   margin-bottom: 30px;
 }
+.ml-\[8px\] {
+  margin-left: 8px;
+}
 .block {
   display: block;
 }
@@ -155,6 +158,9 @@
 }
 .w-full {
   width: 100%;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .border-collapse {
   border-collapse: collapse;
@@ -502,6 +508,9 @@
 .text-\[\#F70000\] {
   color: #F70000;
 }
+.text-\[\#FF4DA6\] {
+  color: #FF4DA6;
+}
 .text-\[\#fff\] {
   color: #fff;
 }
@@ -513,6 +522,10 @@
 }
 .line-through {
   text-decoration-line: line-through;
+}
+.outline {
+  outline-style: var(--tw-outline-style);
+  outline-width: 1px;
 }
 .filter {
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -746,6 +759,13 @@ a {
   border: none;
   cursor: pointer;
 }
+.tooltip {
+  visibility: hidden;
+}
+.tooltip.shown {
+  visibility: visible;
+  opacity: 1;
+}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -758,6 +778,11 @@ a {
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
 }
 @property --tw-blur {
   syntax: "*";
@@ -818,6 +843,7 @@ a {
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
+      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;

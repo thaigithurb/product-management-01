@@ -22,6 +22,7 @@
     "cloudinary": "^2.7.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.1",
+    "emoji-picker-element": "^1.27.0",
     "express": "^5.1.0",
     "express-flash": "^0.0.2",
     "express-session": "^1.18.2",

@@ -75,6 +75,9 @@
 .mb-\[30px\] {
   margin-bottom: 30px;
 }
+.ml-\[8px\] {
+  margin-left: 8px;
+}
 .block {
   display: block;
 }
@@ -504,6 +507,9 @@
 }
 .text-\[\#F70000\] {
   color: #F70000;
+}
+.text-\[\#FF4DA6\] {
+  color: #FF4DA6;
 }
 .text-\[\#fff\] {
   color: #fff;

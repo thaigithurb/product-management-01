@@ -19,6 +19,9 @@ block main
 
             form(action="" class="input-bar" my-id=user.id my-name=user.fullName)
                 input(type="text" placeholder="Nhập nội dung..." name="content")
+                div(class="button-icon text-[#FF4DA6] ml-[8px] text-[30px] cursor-pointer") <i class="fa-solid fa-face-smile"></i>
+                div(class="tooltip" role="tooltip")
+                    emoji-picker
                 button(class="send-btn text-[#ffff]")
                     i(class="fa-solid fa-paper-plane")
 
