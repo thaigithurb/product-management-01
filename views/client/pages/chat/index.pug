@@ -16,6 +16,8 @@ block main
                         if (chat.user_id !== user.id)
                             div(class="name") #{chat.infoUser.fullName}
                         p #{chat.content}
+                div(class="inner-list-typing")
+
 
             form(action="" class="input-bar" my-id=user.id my-name=user.fullName)
                 input(type="text" placeholder="Nhập nội dung..." name="content")
