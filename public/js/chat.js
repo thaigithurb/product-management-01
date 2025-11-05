@@ -79,6 +79,8 @@ socket.on("SERVER_RETURN_MESSAGE", (data) => {
 
     div.innerHTML = htmlFullName + htmlContent + htmlImages;
 
+    const gallery = new Viewer(div);
+
     body.insertBefore(div, listTyping);
     body.scrollTop = body.scrollHeight;
 })
@@ -166,3 +168,7 @@ if (listTyping) {
     })
 }
 // END SERVER_RETURN_TYPING
+
+// show full image 
+const gallery = new Viewer(body);
+//end show full image 
