@@ -15,16 +15,24 @@ block main
                     div(class=`message ${chat.user_id == user.id ? 'right' : 'left'}`)
                         if (chat.user_id !== user.id)
                             div(class="name") #{chat.infoUser.fullName}
-                        p #{chat.content}
+                        if (chat.content)
+                            p #{chat.content}  
+                        if (chat.images)
+                            each image of chat.images 
+                                img(src=image class="w-[400px] rounded-[10px] mt-[12px]")
                 div(class="inner-list-typing")
-
-
             form(action="" class="input-bar" my-id=user.id my-name=user.fullName)
-                input(type="text" placeholder="Nhập nội dung..." name="content")
-                div(class="button-icon text-[#FF4DA6] ml-[8px] text-[30px] cursor-pointer") <i class="fa-solid fa-face-smile"></i>
-                div(class="tooltip" role="tooltip")
-                    emoji-picker
-                button(class="send-btn text-[#ffff]")
-                    i(class="fa-solid fa-paper-plane")
+                div(class="inner-preview-images") 
+                    div(class="custom-file-container images-upload" data-upload-id="images-upload")
+                div(class="flex items-center mt-[10px]")
+                    input(type="text" placeholder="Nhập nội dung..." name="content")
+                    div(class="button-icon text-[#FF4DA6] ml-[8px] text-[30px] cursor-pointer") <i class="fa-solid fa-face-smile"></i>
+                    label(class="button-icon text-[#FF4DA6] ml-[8px] text-[30px] cursor-pointer" for="file-upload-with-preview-images-upload") <i class="fa-solid fa-image"></i>
+                    div(class="tooltip" role="tooltip")
+                        emoji-picker
+                    button(type="submit" class="send-btn text-[#ffff]")
+                        i(class="fa-solid fa-paper-plane")
+
+               
 
                             

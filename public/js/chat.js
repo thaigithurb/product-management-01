@@ -5,16 +5,31 @@ const body = document.querySelector(".messages");
 const listTyping = body.querySelector(".inner-list-typing");
 
 
+// file up load with preview 
+const upload = new FileUploadWithPreview.FileUploadWithPreview('images-upload', {
+    multiple: true,
+    maxFileCount: 6
+});
+// end file up load with preview 
+
+
 // CLIENT_SEND_MESSAGE 
 const formSendData = document.querySelector(".input-bar");
 
 if (formSendData) {
-    formSendData.addEventListener("submit", (e) => {
+    formSendData.addEventListener("submit", async (e) => {
         e.preventDefault();
         const content = e.target.content.value;
-        if (content) {
-            socket.emit("CLIENT_SEND_MESSAGE", content);
+        const images = upload.cachedFileArray;
+
+        if (content || images.length > 0) {
+
+            socket.emit("CLIENT_SEND_MESSAGE", {
+                content: content,
+                images: images
+            });
             e.target.content.value = "";
+            upload.resetPreviewPanel(); 
             socket.emit("CLIENT_SEND_TYPING", "hidden");
         } else {
             socket.emit("CLIENT_SEND_TYPING", "hidden");
@@ -29,19 +44,41 @@ if (formSendData) {
 socket.on("SERVER_RETURN_MESSAGE", (data) => {
 
     const div = document.createElement("div");
+    let htmlFullName = "";
+    let htmlContent = "";
+    let htmlImages = "";
+
     div.classList.add("message");
     if (data.userId == myId) {
         div.classList.add("right");
-        div.innerHTML = `
-            <p class="">${data.content}</p>
-        `;
     } else {
         div.classList.add("left");
-        div.innerHTML = `
+        htmlFullName = `
             <div class="name">${data.fullName}</div>
+        `;
+    }
+
+    if (data.content) {
+        htmlContent = `
             <p class="content">${data.content}</p>
         `;
     }
+
+    if (data.images.length > 0) {
+        htmlImages += `<div class="inner-images">`;
+
+        for (const image of data.images) {
+            htmlImages += `
+                <img src="${image}" class="w-[400px] mt-[12px] rounded-[10px]">
+            `;
+        }
+
+        htmlImages += `</div>`;
+
+    }
+
+    div.innerHTML = htmlFullName + htmlContent + htmlImages;
+
     body.insertBefore(div, listTyping);
     body.scrollTop = body.scrollHeight;
 })
