@@ -44,3 +44,33 @@ module.exports.notFriend = async (req, res) => {
         users: users
     })
 }
+
+// [GET] /users/request
+module.exports.request = async (req, res) => {
+
+    // socket.io 
+    usersSocket(res);
+    // end socket.io 
+
+    const userId = res.locals.user.id;
+
+    const myUser = await User.findOne({
+        _id: userId
+    });
+
+    const requestFriends = myUser.requestFriends;
+
+    const users = await User.find({
+        _id: {
+            $in: requestFriends
+        },
+        status: "active",
+        deleted: false
+    }).select("id fullName");
+
+
+    res.render("client/pages/users/request.pug", {
+        pageTitle: "Lời mời đã gửi",
+        users: users
+    })
+}
