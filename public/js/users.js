@@ -25,3 +25,18 @@ if (listBtnCancelFriend.length > 0) {
     });
 }
 //end chức năng hủy gửi yêu cầu 
+
+// chức năng hủy gửi yêu cầu 
+const listBtnRefuseFriend = document.querySelectorAll("[btn-refuse-friend]");
+if (listBtnRefuseFriend.length > 0) {
+    listBtnRefuseFriend.forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.closest(".box-user").classList.add("refuse");
+            const userId = btn.getAttribute("btn-refuse-friend");
+
+            socket.emit("CLIENT_REFUSE_FRIEND", userId);
+        })
+    });
+}
+//end chức năng hủy gửi yêu cầu 
+

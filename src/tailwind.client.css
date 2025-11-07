@@ -348,6 +348,7 @@ a {
   margin-top: 5px;
   display: flex;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 /* Nút */
@@ -386,5 +387,18 @@ a {
 }
 
 .box-user.add [btn-cancel-friend] {
+    display: inline-block;
+}
+
+
+.box-user.refuse [btn-refuse-friend] {
+    display: none;
+}
+
+.box-user.refuse [btn-accept-friend] {
+    display: none;
+}
+
+.box-user.refuse [btn-deleted-friend] {
     display: inline-block;
 }

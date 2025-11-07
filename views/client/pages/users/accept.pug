@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+
+block main 
+
+
+    div(class="w-[1200px] mx-auto py-[50px]")
+        div(class="mb-[30px] pb-[15px]")
+            a(href="/users/not-friend" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Danh sách người dùng 
+            a(href="/users/friends" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Danh sách bạn bè
+            a(href="/users/request" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Lời mời đã gửi
+            a(href="/users/accept" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Lời mời kết bạn
+
+        div
+            +box-head(pageTitle)
+        div(class="flex gap-[10px]")
+            each user in users
+                .box-user
+                    .inner-avatar
+                        img(src="https://i.pravatar.cc/60", alt="Avatar")
+                    .inner-info
+                        h4 #{user.fullName}
+                        .btn-group
+                            button(class="add" btn-accept-friend=user.id) Chấp nhận
+                            button(class="cancel" btn-refuse-friend=user.id) Xóa  
+                            button(class="deleted hidden" btn-deleted-friend disabled) Đã xóa
+
+block script               
+    script(type="module" src="/js/users.js") 
+
+
+               
+
+                            
