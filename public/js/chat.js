@@ -4,6 +4,8 @@ const myId = document.querySelector("[my-id]").getAttribute("my-id");
 const body = document.querySelector(".messages");
 const listTyping = body.querySelector(".inner-list-typing");
 
+console.log('abc');
+
 
 // file up load with preview 
 const upload = new FileUploadWithPreview.FileUploadWithPreview('images-upload', {

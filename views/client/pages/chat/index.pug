@@ -3,9 +3,13 @@ include ../../mixins/box-head.pug
 
 
 block main 
-
-
     div(class="w-[1200px] mx-auto py-[50px]")
+        div(class="mb-[30p] pb-[15px]")
+            a(href="/users/not-friend" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Danh sách người dùng 
+            a(href="/users/friends" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Danh sách bạn bè
+            a(href="/users/request" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Lời mời đã gửi
+            a(href="/users/accept" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Lời mời kết bạn
+
         div
             +box-head(pageTitle)
 
@@ -17,8 +21,8 @@ block main
                             div(class="name") #{chat.infoUser.fullName}
                         if (chat.content)
                             p #{chat.content}  
-                        if (chat.images)
-                            each image of chat.images 
+                        if (chat.images && chat.images.length > 0)
+                            each image in chat.images 
                                 img(src=image class="w-[400px] rounded-[10px] mt-[12px]")
                 div(class="inner-list-typing")
             form(action="" class="input-bar" my-id=user.id my-name=user.fullName)
@@ -33,6 +37,6 @@ block main
                     button(type="submit" class="send-btn text-[#ffff]")
                         i(class="fa-solid fa-paper-plane")
 
-               
-
+block script               
+    script(type="module" src="/js/chat.js") 
                             

@@ -75,6 +75,9 @@
 .mb-\[24px\] {
   margin-bottom: 24px;
 }
+.mb-\[30p\] {
+  margin-bottom: 30p;
+}
 .mb-\[30px\] {
   margin-bottom: 30px;
 }
@@ -328,6 +331,9 @@
 .border-b-\[\#515151\] {
   border-bottom-color: #515151;
 }
+.bg-\[\#3E96F5\] {
+  background-color: #3E96F5;
+}
 .bg-\[\#6B747C\] {
   background-color: #6B747C;
 }
@@ -447,6 +453,9 @@
 }
 .pb-\[6px\] {
   padding-bottom: 6px;
+}
+.pb-\[15px\] {
+  padding-bottom: 15px;
 }
 .pb-\[20px\] {
   padding-bottom: 20px;
