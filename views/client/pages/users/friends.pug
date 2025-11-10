@@ -4,13 +4,13 @@ include ../../mixins/box-head.pug
 
 block main 
 
-
     div(class="w-[1200px] mx-auto py-[50px]")
         include ../../partials/list-btn-users.pug
 
+
         div
             +box-head(pageTitle)
-        div(class="flex gap-[10px]" data-users-accept=user.id)
+        div(class="flex gap-[10px]")
             each user in users
                 .box-user
                     .inner-avatar
@@ -18,9 +18,7 @@ block main
                     .inner-info
                         h4 #{user.fullName}
                         .btn-group
-                            button(class="add" btn-accept-friend=user.id) Chấp nhận
-                            button(class="cancel" btn-refuse-friend=user.id) Xóa  
-                            button(class="deleted hidden" btn-deleted-friend disabled) Đã xóa
+                            button(class="cancel" btn-delete-friend=user.id) Hủy kết bạn
 
 block script               
     script(type="module" src="/js/users.js") 

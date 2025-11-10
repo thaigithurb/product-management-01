@@ -24,6 +24,15 @@ const userSchema = new mongoose.Schema(
         deletedAt: Date,
         acceptFriends: [],
         requestFriends: [],
+        friendList: [
+            {
+                user_id: String,
+                room_chat_id: {
+                    type: String,
+                    default: ""
+                },
+            }
+        ],
     }, 
     {
         timestamps: true

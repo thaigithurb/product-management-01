@@ -402,3 +402,7 @@ a {
 .box-user.refuse [btn-deleted-friend] {
     display: inline-block;
 }
+
+.box-user.accepted {
+    display: none;
+}

@@ -16,6 +16,7 @@ module.exports.notFriend = async (req, res) => {
 
     const requestFriends = myUser.requestFriends;
     const acceptFriends = myUser.acceptFriends;
+    const friendList = myUser.friendList;
 
     const users = await User.find({
         $and: [{
@@ -31,6 +32,11 @@ module.exports.notFriend = async (req, res) => {
             {
                 _id: {
                     $nin: acceptFriends
+                }
+            },
+            {
+                _id: {
+                    $nin: friendList
                 }
             },
         ],
@@ -75,7 +81,7 @@ module.exports.request = async (req, res) => {
     })
 }
 
-// [GET] /users/request
+// [GET] /users/accept
 module.exports.accept = async (req, res) => {
 
     // socket.io 
@@ -101,6 +107,36 @@ module.exports.accept = async (req, res) => {
 
     res.render("client/pages/users/accept.pug", {
         pageTitle: "Lời mời kết bạn",
+        users: users
+    })
+}
+
+// [GET] /users/friends
+module.exports.friends = async (req, res) => {
+
+    // socket.io 
+    usersSocket(res);
+    // end socket.io 
+
+    const userId = res.locals.user.id;
+
+    const myUser = await User.findOne({
+        _id: userId
+    });
+
+     const friendList = myUser.friendList;
+
+    const users = await User.find({
+        _id: {
+            $in: friendList
+        },
+        status: "active",
+        deleted: false
+    }).select("id fullName avatar");
+
+
+    res.render("client/pages/users/friends", {
+        pageTitle: "Danh sách bạn bè",
         users: users
     })
 }

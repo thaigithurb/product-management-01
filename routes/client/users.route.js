@@ -12,4 +12,6 @@ router.get('/request', authMiddleware.requireAuth, controller.request);
 
 router.get('/accept', authMiddleware.requireAuth, controller.accept);
 
+router.get('/friends', authMiddleware.requireAuth, controller.friends);
+
 module.exports = router;
