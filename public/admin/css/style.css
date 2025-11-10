@@ -81,6 +81,9 @@
 .mb-\[30px\] {
   margin-bottom: 30px;
 }
+.ml-\[3px\] {
+  margin-left: 3px;
+}
 .ml-\[8px\] {
   margin-left: 8px;
 }
@@ -98,6 +101,9 @@
 }
 .inline-block {
   display: inline-block;
+}
+.inline-flex {
+  display: inline-flex;
 }
 .table {
   display: table;
@@ -216,6 +222,9 @@
 .overflow-hidden {
   overflow: hidden;
 }
+.rounded-\[2px\] {
+  border-radius: 2px;
+}
 .rounded-\[3px\] {
   border-radius: 3px;
 }
@@ -230,6 +239,9 @@
 }
 .rounded-\[50\%\] {
   border-radius: 50%;
+}
+.rounded-full {
+  border-radius: calc(infinity * 1px);
 }
 .rounded-t-\[8px\] {
   border-top-left-radius: 8px;
@@ -334,9 +346,6 @@
 .border-b-\[\#515151\] {
   border-bottom-color: #515151;
 }
-.bg-\[\#3E96F5\] {
-  background-color: #3E96F5;
-}
 .bg-\[\#6B747C\] {
   background-color: #6B747C;
 }
@@ -381,6 +390,9 @@
 }
 .bg-\[\#F70000\] {
   background-color: #F70000;
+}
+.bg-\[\#FF4444\] {
+  background-color: #FF4444;
 }
 .bg-\[\#FFC107\] {
   background-color: #FFC107;
@@ -519,6 +531,12 @@
 }
 .text-\[\#001700\] {
   color: #001700;
+}
+.text-\[\#3333\] {
+  color: #3333;
+}
+.text-\[\#33333\] {
+  color: #33333;
 }
 .text-\[\#155724\] {
   color: #155724;

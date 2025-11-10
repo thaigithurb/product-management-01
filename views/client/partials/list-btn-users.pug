@@ -1,0 +1,7 @@
+div(class="mb-[30px] pb-[15px]")
+    a(href="/users/not-friend" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Danh sách người dùng 
+    a(href="/users/friends" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Danh sách bạn bè
+    a(href="/users/request" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") Lời mời đã gửi
+    a(href="/users/accept" class="mr-[10px] border border-[#0078F0] cursor-pointer hover:bg-[#0066CC] bg-[#0078F0] p-[10px] rounded-[5px] text-[#ffff]") 
+        | Lời mời kết bạn
+        span(class="bg-[#ffff] text-[#000] ml-[3px] p-[2px] rounded-[2px] " badge-users-accept=user.id) #{user.acceptFriends.length}
