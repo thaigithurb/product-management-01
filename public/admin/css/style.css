@@ -346,6 +346,9 @@
 .border-b-\[\#515151\] {
   border-bottom-color: #515151;
 }
+.bg-\[\#3E96F5\] {
+  background-color: #3E96F5;
+}
 .bg-\[\#6B747C\] {
   background-color: #6B747C;
 }
@@ -519,6 +522,9 @@
 }
 .text-\[\#000\] {
   color: #000;
+}
+.text-\[\#01F702\] {
+  color: #01F702;
 }
 .text-\[\#4ACA6A\] {
   color: #4ACA6A;

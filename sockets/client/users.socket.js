@@ -61,7 +61,7 @@ module.exports = async (res) => {
                 infoUserA: infoUserA
             });
 
-            
+
         })
 
         // hủy lời mời
@@ -181,7 +181,10 @@ module.exports = async (res) => {
                     _id: myUserId
                 }, {
                     $push: {
-                        friendList: userId
+                        friendList: {
+                            user_id: userId,
+                            room_chat_id: ""
+                        }
                     },
                     $pull: {
                         acceptFriends: userId
@@ -193,7 +196,10 @@ module.exports = async (res) => {
                     _id: userId
                 }, {
                     $push: {
-                        friendList: myUserId
+                        friendList: {
+                            user_id: myUserId,
+                            room_chat_id: ""
+                        }
                     },
                     $pull: {
                         requestFriends: myUserId

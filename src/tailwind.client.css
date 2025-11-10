@@ -403,6 +403,24 @@ a {
     display: inline-block;
 }
 
-.box-user.accepted {
+.box-user.accepted [btn-accepted-friend] {
+    display: inline-block;
+}
+
+.box-user.accepted [btn-accept-friend] {
     display: none;
 }
+
+.box-user.accepted [btn-refuse-friend] {
+    display: none;
+}
+
+.box-user .inner-status {
+    opacity: 0;
+    color: #01F702
+}
+
+.box-user .inner-status[status="online"] {
+    opacity: 1;
+}
+

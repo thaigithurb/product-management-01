@@ -18,7 +18,12 @@ block main
                     .inner-info
                         h4 #{user.fullName}
                         .btn-group
-                            button(class="cancel" btn-delete-friend=user.id) Hủy kết bạn
+                            button(class="add") Nhắn tin
+                            button(class="cancel" btn-remove-friend=user.id) Hủy kết bạn
+                    .inner-status(status=user.statusOnline)
+                        i.fa-solid.fa-circle
+                    
+                    
 
 block script               
     script(type="module" src="/js/users.js") 

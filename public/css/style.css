@@ -328,6 +328,9 @@
 .border-b-\[\#515151\] {
   border-bottom-color: #515151;
 }
+.bg-\[\#3E96F5\] {
+  background-color: #3E96F5;
+}
 .bg-\[\#6B747C\] {
   background-color: #6B747C;
 }
@@ -908,8 +911,21 @@ a {
 .box-user.refuse [btn-deleted-friend] {
   display: inline-block;
 }
-.box-user.accepted {
+.box-user.accepted [btn-accepted-friend] {
+  display: inline-block;
+}
+.box-user.accepted [btn-accept-friend] {
   display: none;
+}
+.box-user.accepted [btn-refuse-friend] {
+  display: none;
+}
+.box-user .inner-status {
+  opacity: 0;
+  color: #01F702;
+}
+.box-user .inner-status[status="online"] {
+  opacity: 1;
 }
 @property --tw-border-style {
   syntax: "*";

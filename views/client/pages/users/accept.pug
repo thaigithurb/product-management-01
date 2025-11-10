@@ -21,6 +21,7 @@ block main
                             button(class="add" btn-accept-friend=user.id) Chấp nhận
                             button(class="cancel" btn-refuse-friend=user.id) Xóa  
                             button(class="deleted hidden" btn-deleted-friend disabled) Đã xóa
+                            button(class="accepted hidden text-[#fff] bg-[#3E96F5]" btn-accepted-friend disabled) Đã chấp nhận
 
 block script               
     script(type="module" src="/js/users.js") 
