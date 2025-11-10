@@ -60,6 +60,8 @@ module.exports = async (res) => {
                 userId: userId,
                 infoUserA: infoUserA
             });
+
+            
         })
 
         // hủy lời mời

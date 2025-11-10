@@ -11,9 +11,9 @@ block main
 
         div
             +box-head(pageTitle)
-        div(class="flex gap-[10px]")
+        div(class="flex gap-[10px]" data-users-not-friend=user.id)
             each user in users
-                .box-user
+                .box-user(user-id=user.id)
                     .inner-avatar
                         img(src="https://i.pravatar.cc/60", alt="Avatar")
                     .inner-info
