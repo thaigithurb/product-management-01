@@ -54,19 +54,6 @@ const refuseFriend = (button) => {
     });
 }
 
-// chức năng hủy bạn bè
-// const listBtnDeleteFriend = document.querySelectorAll("[btn-delete-friend]");
-// if (listBtnDeleteFriend.length > 0) {
-//     listBtnDeleteFriend.forEach(btn => {
-//         btn.addEventListener("click", () => {
-//             btn.closest(".box-user").classList.remove("add");
-//             const userId = btn.getAttribute("btn-cancel-friend");
-
-//             socket.emit("CLIENT_CANCEL_REQUEST_FRIEND", userId);
-//         })
-//     });
-// }
-//end chức năng hủy bạn bè
 
 const listBtnRefuseFriend = document.querySelectorAll("[btn-refuse-friend]");
 if (listBtnRefuseFriend.length > 0) {
@@ -125,3 +112,17 @@ if (dataUsersAccept) {
 }
 
 // END SERVER_RETURN_INFO_ACCEPT_FIREND
+
+
+// SERVER_RETURN_USER_ID_CANCEL_FRIEND 
+socket.on("SERVER_RETURN_USER_ID_CANCEL_FRIEND", (data) => {
+    const boxUserCancel = document.querySelector(`[user-id="${data.userIdA}"]`);
+    if (boxUserCancel) {
+        const dataUsersAccept = document.querySelector("[data-users-accept]");
+        const userIdB = badgeUserAccept.getAttribute("badge-users-accept");
+        if (userIdB == data.userIdB) {
+            dataUsersAccept.removeChild(boxUserCancel);
+        }
+    }
+});
+// END SERVER_RETURN_USER_ID_CANCEL_FRIEND 
