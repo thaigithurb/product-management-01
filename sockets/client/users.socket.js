@@ -1,3 +1,4 @@
+const RoomChat = require("../../models/room-chat.model");
 const User = require("../../models/user.modal");
 
 module.exports = async (res) => {
@@ -176,6 +177,25 @@ module.exports = async (res) => {
 
             // Nếu cả 2 điều kiện đều thỏa mãn → Chấp nhận kết bạn
             if (existAinB && existBinA) {
+
+                // tạo phòng chat chung 
+                const dataRoom = {
+                    typeRoom: 'friend',
+                    users: [{
+                            user_id: userId,
+                            role: "superAdmin"
+                        },
+                        {
+                            user_id: myUserId,
+                            role: "superAdmin"
+                        },
+                    ],
+                };
+
+                const roomChat = new RoomChat(dataRoom);
+                await roomChat.save();
+                //end tạo phòng chat chung 
+
                 // Thêm vào friendList của B và xóa khỏi acceptFriends
                 await User.updateOne({
                     _id: myUserId
@@ -183,7 +203,7 @@ module.exports = async (res) => {
                     $push: {
                         friendList: {
                             user_id: userId,
-                            room_chat_id: ""
+                            room_chat_id: roomChat.id
                         }
                     },
                     $pull: {
@@ -198,7 +218,7 @@ module.exports = async (res) => {
                     $push: {
                         friendList: {
                             user_id: myUserId,
-                            room_chat_id: ""
+                            room_chat_id: roomChat.id
                         }
                     },
                     $pull: {

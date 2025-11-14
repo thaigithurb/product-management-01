@@ -7,7 +7,7 @@ block main
     div(class="w-[1200px] mx-auto py-[50px]")
         include ../../partials/list-btn-users.pug
 
-
+        div #{user}
         div
             +box-head(pageTitle)
         div(class="flex gap-[10px]" data-users-friend=user.id)
@@ -18,7 +18,8 @@ block main
                     .inner-info
                         h4 #{user.fullName}
                         .btn-group
-                            button(class="add") Nhắn tin
+                            a( href=`/chat/${user.infoFriend.room_chat_id}`) 
+                                button(class="add") Nhắn tin
                             button(class="cancel" btn-remove-friend=user.id) Hủy kết bạn
                     .inner-status(status=user.statusOnline) 
                         i.fa-solid.fa-circle
