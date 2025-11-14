@@ -12,12 +12,11 @@ const userMiddleware = require("../../middlewares/client/user.middleware");
 const settingsMiddleware = require("../../middlewares/client/settings.middleware");
 const authMiddleware = require("../../middlewares/client/auth.middleware");
 
-
 module.exports = (app) => {
 
     app.use(categoryMiddleware.category);
 
-    app.use(userMiddleware.infoUser);
+    app.use(userMiddleware.infoUser); 
 
     app.use(cartMiddleware.cartId);
 

@@ -36,11 +36,6 @@ module.exports.notFriend = async (req, res) => {
                     $nin: acceptFriends
                 }
             },
-            {
-                _id: {
-                    $nin: friendList
-                }
-            },
         ],
         status: "active",
         deleted: false
@@ -136,7 +131,7 @@ module.exports.friends = async (req, res) => {
         },
         status: "active",
         deleted: false
-    }).select("id fullName avatar");
+    }).select("id fullName avatar statusOnline");
 
 
     res.render("client/pages/users/friends", {

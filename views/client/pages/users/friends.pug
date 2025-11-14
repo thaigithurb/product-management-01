@@ -10,9 +10,9 @@ block main
 
         div
             +box-head(pageTitle)
-        div(class="flex gap-[10px]")
+        div(class="flex gap-[10px]" data-users-friend=user.id)
             each user in users
-                .box-user
+                .box-user(user-id=user.id)
                     .inner-avatar
                         img(src="https://i.pravatar.cc/60", alt="Avatar")
                     .inner-info
@@ -20,7 +20,7 @@ block main
                         .btn-group
                             button(class="add") Nhắn tin
                             button(class="cancel" btn-remove-friend=user.id) Hủy kết bạn
-                    .inner-status(status=user.statusOnline)
+                    .inner-status(status=user.statusOnline) 
                         i.fa-solid.fa-circle
                     
                     
